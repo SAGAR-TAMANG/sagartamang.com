@@ -9,19 +9,22 @@ const MainHeader = () => {
             <h1 className="font-semibold italic">
               sagar tamang ~ <span className="text-xs">सागर तामाङ</span>
             </h1>
-            <h1 className="font-semibold italic text-sm">
-              <BoxedText text={"product, ai, research, web, design, elt"} />
-            </h1>
+            <p className="font-semibold italic text-sm">
+              <BoxedText text={"product,ai,research,web,design,elt"} />
+            </p>
+            <p className="italic">
+              i <span className="not-italic font-medium">build</span> <span className="underline">fast</span>
+            </p>
           </div>
-          <div>
+          <div className="text-right">
             <p className="font-normal italic">
-              ಬೆಂಗಳೂರು ~ Bangalore, India
+              ಬೆಂಗಳೂರು
+            </p>
+            <p className="font-normal italic">
+              Bangalore, India
             </p>
           </div>
         </div>
-        <p className="italic">
-          i <span className="not-italic font-medium">build</span> <span className="underline">fast</span>
-        </p>
       </div>
     </section>
   )
