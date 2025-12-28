@@ -3,9 +3,9 @@ import BoxedText from "./boxed-text"
 const MainHeader = () => {
   return (
     <section>
-      <div className="flex flex-col gap-figma-gap"> 
+      <div className="flex flex-col gap-figma-inside-gap"> 
         <div className="flex justify-between items-center">
-          <div className="flex flex-col gap-figma-gap">
+          <div className="flex flex-col gap-figma-inside-gap">
             <h1 className="font-semibold italic">
               sagar tamang ~ सागर तामाङ
             </h1>
