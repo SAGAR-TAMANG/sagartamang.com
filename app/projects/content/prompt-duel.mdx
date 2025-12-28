@@ -1,0 +1,35 @@
+---
+title: 'PromptDuel'
+publishedAt: '2025-12-25'
+summary: 'The Open Source A/B Testing Arena for LLMs. Designed, coded, and deployed in a single day.'
+image: '/projects/prompt-duel.webp'
+tech: 'Next.js, Supabase, Tailwind, Shadcn/UI'
+---
+
+> **"Stop guessing which prompt is better. Duel them and let the data decide."**
+
+I designed, coded, and deployed **PromptDuel** within a single 24-hour sprint on Christmas Day 2025.
+
+## The Problem
+When developing AI Agents, small semantic changes in a prompt can lead to drastically different outputs. Tracking this in spreadsheets is messy. You need a way to **blind test** these outputs against each other to get clean, unbiased data.
+
+## The Solution
+PromptDuel solves the "vibe check" problem. It is a lightweight, structured environment to evaluate LLM outputs side-by-side.
+
+### Key Features
+- **⚖️ Side-by-Side Arena:** A clean, split-screen interface for comparing two text outputs (supports Markdown).
+- **🫣 Blind Testing Mode:** Model names are hidden from voters to ensure unbiased feedback.
+- **🔗 Instant Sharing:** Generate public, read-only links for clients or team members to cast votes.
+- **📊 Analytics Dashboard:** Track vote velocity and win rates visually.
+- **🔐 Secure:** Row Level Security (RLS) via Supabase ensures data integrity.
+
+## Tech Stack
+I chose a stack focused on speed and reliability:
+- **Frontend:** Next.js 14 (App Router) + Tailwind CSS
+- **UI Library:** Shadcn/UI + Lucide Icons
+- **Backend/Auth:** Supabase (PostgreSQL + RLS)
+- **Visualization:** Recharts
+
+## Links
+- [View Live Demo](https://promptduel.feynmanpi.com)
+- [Source Code](https://github.com/SAGAR-TAMANG/prompt-duel-main)
