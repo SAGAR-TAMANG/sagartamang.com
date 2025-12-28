@@ -1,6 +1,14 @@
+import { 
+  SiX, 
+  SiGithub, 
+  SiLinkedin, 
+  SiInstagram, 
+  SiGooglescholar 
+} from 'react-icons/si';
+
 function RssIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
       <path d="M4 11a9 9 0 0 1 9 9" style={{ fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' }} />
       <path d="M4 4a16 16 0 0 1 16 16" style={{ fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' }} />
       <circle cx="5" cy="19" r="1" />
@@ -40,22 +48,21 @@ function ScholarIcon() {
   )
 }
 
-function CodeIcon() {
+function LinkedinIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-      <polyline points="16 18 22 12 16 6" />
-      <polyline points="8 6 2 12 8 18" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
     </svg>
   )
 }
 
 const socialLinks = [
   { name: 'rss', url: '/rss', icon: RssIcon },
-  { name: 'x', url: 'https://x.com/sagar_builds', icon: XIcon },
-  { name: 'instagram', url: 'https://www.instagram.com/sagar_builds/', icon: InstagramIcon },
-  { name: 'github', url: 'https://github.com/SAGAR-TAMANG', icon: GithubIcon },
-  { name: 'scholar', url: 'https://scholar.google.com/citations?hl=en&user=3mS0Y4wAAAAJ', icon: ScholarIcon },
-  // { name: 'source', url: 'https://github.com/SAGAR-TAMANG/sagartamang.com', icon: CodeIcon },
+  { name: 'x', url: 'https://x.com/sagar_builds', icon: SiX },
+  { name: 'instagram', url: 'https://www.instagram.com/sagar_builds/', icon: SiInstagram },
+  { name: 'github', url: 'https://github.com/SAGAR-TAMANG', icon: SiGithub },
+  { name: 'linkedin', url: 'https://www.linkedin.com/in/sagar-tmg/', icon: SiLinkedin },
+  { name: 'scholar', url: 'https://scholar.google.com/citations?hl=en&user=3mS0Y4wAAAAJ', icon: SiGooglescholar },
 ]
 
 export default function Footer() {
