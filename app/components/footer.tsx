@@ -84,7 +84,7 @@ export default function Footer() {
         ))}
       </ul>
       <p className="mt-8 text-neutral-600 dark:text-neutral-300 text-sm">
-        © {new Date().getFullYear()} MIT Licensed | find code <a className="underline" rel="noopener noreferrer" aria-label={"source-code"} target="_blank" href="https://github.com/SAGAR-TAMANG/sagartamang.com">here</a> | built by sagar
+        © {new Date().getFullYear()} MIT Licensed | find code <a className="underline decoration-white hover:decoration-neutral-400 underline-offset-4" rel="noopener noreferrer" aria-label={"source-code"} target="_blank" href="https://github.com/SAGAR-TAMANG/sagartamang.com">here</a> | built by sagar
       </p>
     </footer>
   )
