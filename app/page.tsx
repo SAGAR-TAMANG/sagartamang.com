@@ -2,7 +2,6 @@ import MainHeader from './components/header'
 import Current from './components/current'
 import Previous from './components/previous'
 import Writings from './components/writings'
-import { Projects } from './components/projects'
 import Builds from './components/builds'
 import Contact from './components/contact'
 

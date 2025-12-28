@@ -25,18 +25,53 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Next.js Portfolio Starter',
-    template: '%s | Next.js Portfolio Starter',
+    default: 'Sagar Tamang | AI Engineer',
+    template: '%s | Sagar Tamang',
   },
-  description: 'This is my portfolio.',
+  description: 'AI Engineer based in Bangalore. Currently building intelligent products at TwoSpoon.ai. Master\'s from IIT Patna & IIT Ranchi.',
+  
+  // 1. Keywords: Derived from your "Previous" and "Builds" components
+  keywords: [
+    'Sagar Tamang',
+    'AI Engineer',
+    'Full Stack Developer',
+    'Product Engineer',
+    'Bangalore',
+    'Nepal',
+    'TwoSpoon.ai',
+    'Composio.dev',
+    'LeapX.ai',
+    'Next.js',
+    'Python',
+    'Django',
+    'LLM',
+    'Generative AI'
+  ],
+
+  // 2. Authors & Creator info
+  authors: [{ name: 'Sagar Tamang', url: baseUrl }],
+  creator: 'Sagar Tamang',
+  
+  // 3. Open Graph (Facebook, LinkedIn, iMessage)
   openGraph: {
-    title: 'My Portfolio',
-    description: 'This is my portfolio.',
+    title: 'Sagar Tamang | AI Engineer',
+    description: 'AI Engineer based in Bangalore. Building intelligent products that are scalable and fast.',
     url: baseUrl,
-    siteName: 'My Portfolio',
+    siteName: 'Sagar Tamang Portfolio',
     locale: 'en_US',
     type: 'website',
+    // This will automatically grab the file from app/opengraph-image.tsx
   },
+
+  // 4. Twitter Card (X)
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sagar Tamang | AI Engineer',
+    description: 'AI Engineer at TwoSpoon.ai. Building fast.',
+    creator: '@sagar_builds', // Updated to your handle from Footer
+  },
+
+  // 5. Robots control (ensure you are indexed)
   robots: {
     index: true,
     follow: true,
@@ -48,6 +83,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+
+  // 6. Verification (Optional: Add if you use Google Search Console)
+  // verification: {
+  //   google: 'your-google-verification-code',
+  // },
 }
 
 const cx = (...classes) => classes.filter(Boolean).join(' ')
