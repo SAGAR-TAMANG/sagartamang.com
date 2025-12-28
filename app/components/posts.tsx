@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 
-// 1. Define Props to make limit optional
 type BlogPostsProps = {
   limit?: number
 }
@@ -9,7 +8,6 @@ type BlogPostsProps = {
 export function BlogPosts({ limit }: BlogPostsProps) {
   let allBlogs = getBlogPosts()
 
-  // Sort blogs by date
   let sortedBlogs = allBlogs.sort((a, b) => {
     if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
       return -1
@@ -17,7 +15,11 @@ export function BlogPosts({ limit }: BlogPostsProps) {
     return 1
   })
 
-  // 2. Apply limit if provided
+  // 1. Calculate if we actually need the button
+  // It only shows if a limit exists AND we have more posts than that limit
+  const showViewAll = limit && allBlogs.length > limit
+
+  // 2. Slice the array
   let displayedBlogs = limit ? sortedBlogs.slice(0, limit) : sortedBlogs
 
   return (
@@ -39,8 +41,8 @@ export function BlogPosts({ limit }: BlogPostsProps) {
         </Link>
       ))}
 
-      {/* 3. Conditional "View All" Button */}
-      {limit && (
+      {/* 3. Use the calculated boolean here */}
+      {showViewAll && (
         <Link
           href="/blog"
           className="inline-flex items-center text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors mt-2"

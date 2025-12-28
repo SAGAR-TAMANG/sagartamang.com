@@ -34,7 +34,7 @@ export function Projects({ limit }: ProjectsProps) {
             className="group flex flex-col md:flex-row gap-4 items-start"
             href={`/projects/${project.slug}`}
           >
-            <div className="w-full md:w-48 shrink-0 relative aspect-video md:aspect-[4/3] rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-800">
+            <div className="w-full md:w-40 shrink-0 relative aspect-video md:aspect-[4/3] rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-800">
               {project.metadata.image && (
                 <Image
                   src={project.metadata.image}
@@ -48,15 +48,15 @@ export function Projects({ limit }: ProjectsProps) {
 
             <div className="flex flex-col flex-1 min-w-0">
               <div className="flex justify-between items-baseline mb-1">
-                <h2 className="text-lg font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 group-hover:underline decoration-neutral-400 underline-offset-4">
+                <h2 className="font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 group-hover:underline decoration-neutral-400 underline-offset-4">
                   {project.metadata.title}
                 </h2>
-                <p className="text-xs text-neutral-500 tabular-nums shrink-0 ml-4">
+                <p className="text-neutral-500 tabular-nums shrink-0 ml-4">
                   {formatDate(project.metadata.publishedAt, false)}
                 </p>
               </div>
 
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 mb-3">
+              <p className="text-neutral-600 dark:text-neutral-400 line-clamp-2 mb-3">
                 {project.metadata.summary}
               </p>
 
@@ -79,7 +79,7 @@ export function Projects({ limit }: ProjectsProps) {
       {limit && (
         <Link
           href="/projects"
-          className="inline-flex items-center text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors mt-2"
+          className="inline-flex items-center font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors mt-2"
         >
           View all projects
           <svg
