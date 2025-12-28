@@ -1,42 +1,51 @@
-# Portfolio Blog Starter
+# sagartamang.com
 
-This is a porfolio site template complete with a blog. Includes:
+This is the source code for the official website of **Sagar Tamang**. It serves as a personal portfolio, blog, and playground for my web experiments.
 
-- MDX and Markdown support
-- Optimized for SEO (sitemap, robots, JSON-LD schema)
-- RSS Feed
-- Dynamic OG images
-- Syntax highlighting
-- Tailwind v4
-- Vercel Speed Insights / Web Analytics
-- Geist font
+<img src="./public/ss.png" alt="Website Screenshot" width="100%" />
 
-## Demo
+## Open Source & Usage
 
-https://portfolio-blog-starter.vercel.app
+This project is **MIT Licensed**. 
 
-## How to Use
+Anyone is welcome to use, modify, or distribute this code. If you are looking for a clean, fast, and SEO-optimized template for your own portfolio, feel free to fork this repository or clone it to get started.
 
-You can choose from one of the following two methods to use this repository:
+## Features
 
-### One-Click Deploy
+- **Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS v4
+- **Content:** MDX and Markdown support for blogging
+- **SEO:** Optimized with sitemap, robots.txt, and JSON-LD schema
+- **Analytics:** Integrated Vercel Speed Insights & Web Analytics
+- **Font:** Geist (Vercel's typeface)
+- **Feeds:** RSS Feed support
+- **Images:** Dynamic Open Graph (OG) image generation
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+## Running Locally
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/blog&project-name=blog&repository-name=blog)
+To run this project on your local machine:
 
-### Clone and Deploy
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
-
+1. **Clone the repository:**
 ```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/blog blog
+git clone https://github.com/SAGAR-TAMANG/sagartamang.com.git
+cd sagartamang.com
 ```
 
-Then, run Next.js in development mode:
+2. **Install dependencies:**
+```bash
+pnpm install
+# or
+npm install
+```
 
+
+3. **Start the development server:**
 ```bash
 pnpm dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/templates) ([Documentation](https://nextjs.org/docs/app/building-your-application/deploying)).
+Open [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) with your browser to see the result.
+
+## License
+
+MIT © [Sagar Tamang](https://github.com/SAGAR-TAMANG)
