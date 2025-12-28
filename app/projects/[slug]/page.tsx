@@ -4,6 +4,7 @@ import { formatDate } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
 import { getProjects } from '../utils'
 import Image from 'next/image' // Import Next.js Image
+import BoxedText from 'app/components/boxed-text'
 
 export async function generateStaticParams() {
   let posts = getProjects()
@@ -52,7 +53,7 @@ export default async function Project({ params }) {
     : []
 
   return (
-    <section>
+    <section className='flex flex-col gap-figma-inside-gap'>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -74,7 +75,7 @@ export default async function Project({ params }) {
         {post.metadata.title}
       </h1>
       
-      <div className="flex justify-between items-center mt-2 mb-4">
+      <div className="flex justify-between items-center mt-2">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
         </p>
@@ -82,7 +83,7 @@ export default async function Project({ params }) {
 
       {/* RENDER IMAGE IF EXISTS */}
       {post.metadata.image && (
-        <div className="mb-8">
+        <div>
            <Image 
              src={post.metadata.image} 
              alt={post.metadata.title} 
@@ -95,14 +96,9 @@ export default async function Project({ params }) {
 
       {/* RENDER TECH STACK TAGS */}
       {techStack.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-2 mt-auto">
           {techStack.map((tech) => (
-            <span 
-              key={tech} 
-              className="px-2 py-1 text-xs font-medium bg-neutral-100 dark:bg-neutral-800 rounded-md text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700"
-            >
-              {tech}
-            </span>
+            <BoxedText key={tech} text={tech} />
           ))}
         </div>
       )}
