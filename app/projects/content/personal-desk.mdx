@@ -1,0 +1,19 @@
+---
+title: 'AI Engineer's Personal Desk'
+publishedAt: '2026-05-18'
+summary: 'A 3D Gaussian Splat scan of my personal workspace — every item I use as an AI engineer, captured in immersive spatial detail.'
+image: '/projects/mockup-supersplat-desk.webp'
+tech: 'Gaussian Splatting, SuperSplat, 3D Scanning'
+---
+
+Visit: [https://sagartamang.com/personal-desk](https://sagartamang.com/personal-desk)
+
+As an AI Engineer, here's what my Desk looks like.
+
+### Technologies Used
+
+- **📱 Samsung S24 FE** — Shot a 2-minute walkthrough video clip of my desk.
+- **⚙️ FFmpeg** — Converted the video into individual frames at 3 fps.
+- **🎮 Epic Games' RealityScan** — Generated a `transformers.json` file containing accurate camera coordinates for each frame.
+- **🖌️ Brush** — Used the camera coordinates and frames to train the 3D Gaussian Splatting model.
+- **🌐 SuperSplat** — Created annotations on the trained splat and deployed it to the world.

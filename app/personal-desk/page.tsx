@@ -1,11 +1,15 @@
-'use client';
-
-import { useEffect } from 'react';
-
 export default function PersonalDeskPage() {
-  useEffect(() => {
-    window.location.replace('/personal-desk.html');
-  }, []);
-
-  return null;
+  return (
+    <iframe
+      id="viewer"
+      src="https://superspl.at/s?id=1729469b"
+      allow="fullscreen; xr-spatial-tracking"
+      style={{
+        width: '100%',
+        height: '100%',
+        border: 'none',
+        display: 'block',
+      }}
+    />
+  )
 }

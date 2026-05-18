@@ -1,9 +1,9 @@
-import { 
-  SiX, 
-  SiGithub, 
-  SiLinkedin, 
-  SiInstagram, 
-  SiGooglescholar 
+import {
+  SiX,
+  SiGithub,
+  SiLinkedin,
+  SiInstagram,
+  SiGooglescholar
 } from 'react-icons/si';
 
 function RssIcon() {
@@ -57,12 +57,12 @@ function LinkedinIcon() {
 }
 
 const socialLinks = [
-  { name: 'rss', url: '/rss', icon: RssIcon },
-  { name: 'x', url: 'https://x.com/sagar_builds', icon: SiX },
   { name: 'instagram', url: 'https://www.instagram.com/sagar_builds/', icon: SiInstagram },
+  { name: 'x', url: 'https://x.com/sagar_builds', icon: SiX },
   { name: 'github', url: 'https://github.com/SAGAR-TAMANG', icon: SiGithub },
   { name: 'linkedin', url: 'https://www.linkedin.com/in/sagar-tmg/', icon: SiLinkedin },
   { name: 'scholar', url: 'https://scholar.google.com/citations?hl=en&user=3mS0Y4wAAAAJ', icon: SiGooglescholar },
+  { name: 'rss', url: '/rss', icon: RssIcon },
 ]
 
 export default function Footer() {
