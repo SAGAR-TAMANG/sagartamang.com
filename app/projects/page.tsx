@@ -1,8 +1,8 @@
 import { Projects } from 'app/components/projects'
 
 export const metadata = {
-  title: 'Blog',
-  description: 'Read my blog.',
+  title: 'Projects — Things sagar_builds Has Built',
+  description: 'Explore projects built by Sagar Tamang (@sagar_builds) — AI tools, web apps, research prototypes, and open-source contributions.',
 }
 
 export default function Page() {

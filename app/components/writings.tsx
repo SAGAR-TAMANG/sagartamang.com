@@ -4,9 +4,9 @@ const Writings = () => {
   return (
     <section>
       <div className="flex flex-col gap-figma-inside-gap">
-        <h1 className="font-semibold italic">
+        <h2 className="font-semibold italic">
           Writings
-        </h1>
+        </h2>
         <BlogPosts limit={3} />
       </div>
     </section>

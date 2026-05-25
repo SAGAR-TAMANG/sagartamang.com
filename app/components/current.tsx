@@ -4,9 +4,9 @@ const Current = () => {
   return (
     <section>
       <div className="flex flex-col gap-figma-inside-gap">
-        <h1 className="font-semibold italic">
+        <h2 className="font-semibold italic">
           Current
-        </h1>
+        </h2>
         <p>ai engineer at{' '}
           <span className="inline-flex align-middle gap-0.5 bg-white text-black rounded-sm px-0.5 py-0 hover:cursor-pointer hover:bg-white/90 active:bg-white/70 transition leading-4">
             <Image

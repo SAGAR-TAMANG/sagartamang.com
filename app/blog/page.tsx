@@ -1,8 +1,8 @@
 import { BlogPosts } from 'app/components/posts'
 
 export const metadata = {
-  title: 'Blog',
-  description: 'Read my blog.',
+  title: 'Blog — Tutorials, Builds & Tech by sagar_builds',
+  description: 'Read technical tutorials, build logs, and AI engineering insights by Sagar Tamang (@sagar_builds). Topics include AI on Android, MCP servers, Python, Next.js, and more.',
 }
 
 export default function Page() {

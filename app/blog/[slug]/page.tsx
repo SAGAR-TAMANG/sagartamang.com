@@ -79,7 +79,13 @@ export default async function Blog({ params }) {
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               '@type': 'Person',
-              name: 'My Portfolio',
+              name: 'Sagar Tamang',
+              url: baseUrl,
+              sameAs: [
+                'https://x.com/sagar_builds',
+                'https://www.instagram.com/sagar_builds/',
+                'https://github.com/SAGAR-TAMANG',
+              ],
             },
           }),
         }}

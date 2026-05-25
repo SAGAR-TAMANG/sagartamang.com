@@ -40,9 +40,9 @@ export async function GET() {
   const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
-        <title>My Portfolio</title>
+        <title>sagar_builds — Sagar Tamang's Blog</title>
         <link>${baseUrl}</link>
-        <description>This is my portfolio RSS feed</description>
+        <description>Technical tutorials, build logs, and AI engineering insights by Sagar Tamang (@sagar_builds). AI on Android, MCP servers, Python, Next.js, and more.</description>
         ${itemsXml}
     </channel>
   </rss>`

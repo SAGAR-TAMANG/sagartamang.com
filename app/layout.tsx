@@ -26,14 +26,17 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Sagar Tamang | AI Engineer',
-    template: '%s | Sagar Tamang',
+    default: 'Sagar Tamang (@sagar_builds) | AI Engineer & Builder',
+    template: '%s | sagar_builds — Sagar Tamang',
   },
-  description: 'AI Engineer based in Bangalore. Currently building intelligent products at TwoSpoon.ai. Master\'s from IIT Patna & IIT Ranchi.',
+  description: 'sagar_builds — Sagar Tamang is an AI Engineer based in Bangalore, building intelligent products at TwoSpoon.ai. Master\'s from IIT Patna & IIIT Ranchi. Follow @sagar_builds for builds, tutorials, and tech content.',
   
-  // 1. Keywords: Derived from your "Previous" and "Builds" components
+  // Keywords: brand + skills + locations
   keywords: [
+    'sagar_builds',
+    'sagar builds',
     'Sagar Tamang',
+    'sagar tamang ai engineer',
     'AI Engineer',
     'Full Stack Developer',
     'Product Engineer',
@@ -46,33 +49,44 @@ export const metadata: Metadata = {
     'Python',
     'Django',
     'LLM',
-    'Generative AI'
+    'Generative AI',
+    'MCP server',
+    'AI on Android',
+    'content creator'
   ],
 
-  // 2. Authors & Creator info
+  // Authors & Creator info
   authors: [{ name: 'Sagar Tamang', url: baseUrl }],
-  creator: 'Sagar Tamang',
+  creator: 'Sagar Tamang (@sagar_builds)',
   
-  // 3. Open Graph (Facebook, LinkedIn, iMessage)
+  // Canonical URL
+  alternates: {
+    canonical: baseUrl,
+    types: {
+      'application/rss+xml': `${baseUrl}/rss`,
+    },
+  },
+
+  // Open Graph (Facebook, LinkedIn, iMessage)
   openGraph: {
-    title: 'Sagar Tamang | AI Engineer',
-    description: 'AI Engineer based in Bangalore. Building intelligent products that are scalable and fast.',
+    title: 'Sagar Tamang (@sagar_builds) | AI Engineer & Builder',
+    description: 'sagar_builds — AI Engineer in Bangalore. Building intelligent products that are scalable and fast. Tutorials, projects, and tech content.',
     url: baseUrl,
-    siteName: 'Sagar Tamang Portfolio',
+    siteName: 'sagar_builds — Sagar Tamang',
     locale: 'en_US',
     type: 'website',
-    // This will automatically grab the file from app/opengraph-image.tsx
   },
 
-  // 4. Twitter Card (X)
+  // Twitter Card (X)
   twitter: {
     card: 'summary_large_image',
-    title: 'Sagar Tamang | AI Engineer',
-    description: 'AI Engineer at TwoSpoon.ai. Building fast.',
-    creator: '@sagar_builds', // Updated to your handle from Footer
+    title: 'Sagar Tamang (@sagar_builds) | AI Engineer',
+    description: 'AI Engineer at TwoSpoon.ai. I build fast. Follow @sagar_builds for builds, tutorials, and tech.',
+    creator: '@sagar_builds',
+    site: '@sagar_builds',
   },
 
-  // 5. Robots control (ensure you are indexed)
+  // Robots control (ensure you are indexed)
   robots: {
     index: true,
     follow: true,
@@ -85,7 +99,7 @@ export const metadata: Metadata = {
     },
   },
 
-  // 6. Verification (Optional: Add if you use Google Search Console)
+  // Verification (Optional: Add if you use Google Search Console)
   // verification: {
   //   google: 'your-google-verification-code',
   // },

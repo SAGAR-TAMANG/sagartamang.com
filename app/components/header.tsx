@@ -15,6 +15,9 @@ const MainHeader = () => {
             <p className="italic">
               i <span className="not-italic font-medium">build</span> <span className="underline">fast</span>
             </p>
+            <p className="text-neutral-500 dark:text-neutral-400 text-xs">
+              @sagar_builds
+            </p>
           </div>
           <div className="text-right">
             <p className="font-normal italic">

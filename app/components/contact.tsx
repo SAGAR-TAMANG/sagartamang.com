@@ -2,9 +2,9 @@ const Contact = () => {
   return (
     <section>
       <div className="flex flex-col gap-figma-inside-gap">
-        <h1 className="font-semibold italic">
+        <h2 className="font-semibold italic">
           Contact
-        </h1>
+        </h2>
         <p>
           Interested to talk? read my {' '}
           <a 

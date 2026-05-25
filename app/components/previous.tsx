@@ -4,9 +4,9 @@ const Previous = () => {
   return (
     <section>
       <div className="flex flex-col gap-figma-inside-gap">
-        <h1 className="font-semibold italic">
+        <h2 className="font-semibold italic">
           Previous
-        </h1>
+        </h2>
 
         <div className="flex items-center justify-start gap-2">
           <Image src={"/leapx-ai-favicon.svg"} alt="leapx-ai-favicon" height={10} width={10} />
