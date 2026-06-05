@@ -1,19 +1,48 @@
 "use client"
 
+import { useState } from "react"
 import { usePathname } from "next/navigation"
+import { AnimatePresence, motion } from "motion/react"
 import { AIChatInput } from "./ai-chat-input"
 
-// Renders the AI chat input as a fixed bottom bar, but only on the homepage ("/").
 export default function HomeChatBar() {
   const pathname = usePathname()
+  const [isChatActive, setIsChatActive] = useState(false)
+
   if (pathname !== "/") return null
 
   return (
     <>
-      {/* Reserve space at the bottom so the fixed bar never overlaps the footer */}
       <div aria-hidden className="h-16" />
-      <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center pb-8 pointer-events-none font-sans normal-case">
-        <AIChatInput />
+
+      {/* Glassmorphism backdrop */}
+      <AnimatePresence>
+        {isChatActive && (
+          <>
+            <motion.div
+              key="chat-backdrop"
+              className="fixed inset-0 z-40 backdrop-blur-sm bg-white/70 dark:bg-black/70"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+            <motion.p
+              key="chat-coming-soon"
+              className="fixed inset-0 z-40 flex items-center justify-center font-sans normal-case text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 6 }}
+              transition={{ duration: 0.25, delay: 0.05 }}
+            >
+              coming soon..
+            </motion.p>
+          </>
+        )}
+      </AnimatePresence>
+
+      <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-4 pointer-events-none font-sans normal-case">
+        <AIChatInput onActiveChange={setIsChatActive} />
       </div>
     </>
   )

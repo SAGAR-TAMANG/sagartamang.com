@@ -14,7 +14,11 @@ const PLACEHOLDERS = [
   "show me sagar's best projects",
 ]
 
-const AIChatInput = () => {
+type AIChatInputProps = {
+  onActiveChange?: (active: boolean) => void
+}
+
+const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
   const [placeholderIndex, setPlaceholderIndex] = useState(0)
   const [showPlaceholder, setShowPlaceholder] = useState(true)
   const [isActive, setIsActive] = useState(false)
@@ -52,6 +56,10 @@ const AIChatInput = () => {
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [inputValue])
+
+  useEffect(() => {
+    onActiveChange?.(isActive)
+  }, [isActive, onActiveChange])
 
   const handleActivate = () => setIsActive(true)
 
