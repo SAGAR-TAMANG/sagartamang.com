@@ -3,22 +3,36 @@ const Contact = () => {
     <section>
       <div className="flex flex-col gap-figma-inside-gap">
         <h2 className="font-semibold italic">
-          Contact
+          Partnerships
         </h2>
         <p>
-          Interested to talk? read my {' '}
-          <a 
-            href="/resume.pdf" 
+          for brand collabs and partnerships, reach me at {' '}
+          <a
+            href="mailto:build@sagartamang.com"
+            className="underline hover:decoration-neutral-400 underline-offset-4 hover:text-neutral-800 dark:hover:text-neutral-100 transition-colors"
+          >
+            build@sagartamang.com
+          </a>.
+        </p>
+        <p>
+          for enterprise ai solutions, reach out to {' '}
+          <a target="_blank"
+            rel="noopener noreferrer"
+            href="https://twospoon.ai/"
+            className="underline hover:decoration-neutral-400 underline-offset-4"
+          >
+            twospoon.ai
+          </a>.
+        </p>
+        <p>
+          or just read my {' '}
+          <a
+            href="/resume.pdf"
             target="_blank"
             className="underline hover:decoration-neutral-400 underline-offset-4 hover:text-neutral-800 dark:hover:text-neutral-100 transition-colors"
           >
             resume
-          </a> or Book a slot at {' '}
-          <a target="_blank" 
-            rel="noopener noreferrer"
-            href="https://cal.com/sagar-tamang"
-            className="underline hover:decoration-neutral-400 underline-offset-4"
-          >Cal.com</a>
+          </a>.
         </p>
       </div>
     </section>

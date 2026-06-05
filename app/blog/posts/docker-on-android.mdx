@@ -306,16 +306,14 @@ docker images                     # see pulled images
 
 ## 📋 Quick Command Reference
 
-| Command | What It Does |
-|---------|-------------|
-| `./alpine.sh` | Boot the Alpine VM |
-| `ssh root@localhost -p 2222` | SSH into VM from Termux |
-| `service docker start` | Start Docker service inside VM |
-| `dockerd -H tcp://0.0.0.0:2375 --iptables=false` | Expose Docker daemon |
-| `export DOCKER_HOST=localhost:2375` | Point Termux CLI at the daemon |
-| `docker run hello-world` | Verify everything works |
-| `docker ps` | List running containers |
-| `poweroff` | Shut down the VM cleanly |
+- `./alpine.sh` — Boot the Alpine VM
+- `ssh root@localhost -p 2222` — SSH into VM from Termux
+- `service docker start` — Start Docker service inside VM
+- `dockerd -H tcp://0.0.0.0:2375 --iptables=false` — Expose Docker daemon
+- `export DOCKER_HOST=localhost:2375` — Point Termux CLI at the daemon
+- `docker run hello-world` — Verify everything works
+- `docker ps` — List running containers
+- `poweroff` — Shut down the VM cleanly
 
 ---
 
