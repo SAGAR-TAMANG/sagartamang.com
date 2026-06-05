@@ -72,7 +72,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
     expanded: {
       height: 128,
       boxShadow: "0 8px 32px 0 rgba(0,0,0,0.16)",
-      transition: { type: "spring", stiffness: 120, damping: 18 },
+      transition: { type: "spring", stiffness: 120, damping: 50, delay: 1 },
     },
   }
 
