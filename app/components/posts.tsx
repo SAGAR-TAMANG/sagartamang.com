@@ -23,7 +23,7 @@ export function BlogPosts({ limit }: BlogPostsProps) {
   let displayedBlogs = limit ? sortedBlogs.slice(0, limit) : sortedBlogs
 
   return (
-    <div>
+    <div className="flex flex-col gap-figma-inside-gap">
       {displayedBlogs.map((post) => (
         <Link
           key={post.slug}

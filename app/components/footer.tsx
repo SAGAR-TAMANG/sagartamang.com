@@ -67,7 +67,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="mb-16">
+    <footer className="mb-16 lg:mb-36">
       <ul className="mt-8 flex flex-row space-x-4">
         {socialLinks.map((link) => (
           <li key={link.name}>

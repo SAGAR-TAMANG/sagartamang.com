@@ -9,8 +9,8 @@
   --font-family-serif: var(--font-playfair);
   --font-family-sans: var(--font-manrope);
 
-  --spacing-figma-inside-gap: 10px;
-  --spacing-figma-outside-gap: 18px;
+  --spacing-figma-inside-gap: 16px;
+  --spacing-figma-outside-gap: 40px;
 }
 
 :root {
