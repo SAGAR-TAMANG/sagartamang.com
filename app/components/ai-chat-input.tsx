@@ -120,7 +120,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
       style={{ overflow: "hidden", borderRadius: 32 }}
       onClick={handleActivate}
     >
-      <div className="flex flex-col items-stretch w-full h-full">
+      <div className="flex flex-col-reverse items-stretch w-full h-full">
         {/* Input Row */}
         <div className="flex items-center gap-2 p-3 rounded-full w-full">
           <button
@@ -198,7 +198,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
           variants={{
             hidden: {
               opacity: 0,
-              y: 20,
+              y: -10,
               pointerEvents: "none",
               transition: { duration: 0.25 },
             },
@@ -211,7 +211,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
           }}
           initial="hidden"
           animate={isActive || inputValue ? "visible" : "hidden"}
-          style={{ marginTop: 8 }}
+          style={{ marginBottom: 8 }}
         >
           <div className="flex gap-3 items-center">
             {/* Think Toggle */}
