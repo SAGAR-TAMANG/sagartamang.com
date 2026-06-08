@@ -50,6 +50,7 @@ export const MessageListUI = ({
 
   return (
     <motion.div
+      id="ai-message-list-container"
       layout
       className="w-full max-w-xl text-primary-foreground bg-primary border border-border shadow-sm pointer-events-auto"
       initial={{ opacity: 0, y: 10 }}
@@ -61,6 +62,8 @@ export const MessageListUI = ({
         layout: { duration: 0.3, type: "spring", bounce: 0 } 
       }}
       style={{ overflow: "hidden", borderRadius: 32 }}
+      onMouseDown={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
     >
       {/* Scrollable Message Container */}
       <motion.div 

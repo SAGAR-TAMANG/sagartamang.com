@@ -60,6 +60,9 @@ const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AICha
   // Close input when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (target.closest('#ai-message-list-container')) return;
+
       if (
         wrapperRef.current &&
         !wrapperRef.current.contains(event.target as Node)
