@@ -16,9 +16,11 @@ const PLACEHOLDERS = [
 
 type AIChatInputProps = {
   onActiveChange?: (active: boolean) => void
+  onSendMessage?: (message: string) => void
+  isLoading?: boolean
 }
 
-const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
+const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AIChatInputProps) => {
   const [placeholderIndex, setPlaceholderIndex] = useState(0)
   const [showPlaceholder, setShowPlaceholder] = useState(true)
   const [isActive, setIsActive] = useState(false)
@@ -26,6 +28,19 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
   const [deepSearchActive, setDeepSearchActive] = useState(false)
   const [inputValue, setInputValue] = useState("")
   const wrapperRef = useRef<HTMLDivElement>(null)
+
+  const handleSubmit = () => {
+    if (!inputValue.trim() || isLoading) return
+    onSendMessage?.(inputValue.trim())
+    setInputValue("")
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault()
+      handleSubmit()
+    }
+  }
 
   // Cycle placeholder text when input is inactive
   useEffect(() => {
@@ -70,9 +85,9 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
       transition: { type: "spring", stiffness: 120, damping: 18 },
     },
     expanded: {
-      height: 128,
+      height: "auto",
       boxShadow: "0 8px 32px 0 rgba(0,0,0,0.16)",
-      transition: { type: "spring", stiffness: 120, damping: 50, delay: 1 },
+      transition: { type: "spring", stiffness: 120, damping: 50 },
     },
   }
 
@@ -141,6 +156,8 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
               className="flex-1 border-0 outline-0 rounded-md py-2 text-base bg-transparent w-full font-normal"
               style={{ position: "relative", zIndex: 1 }}
               onFocus={handleActivate}
+              onKeyDown={handleKeyDown}
+              disabled={isLoading}
             />
             <div className="absolute left-0 top-0 w-full h-full pointer-events-none flex items-center px-3 py-2">
               <AnimatePresence mode="wait">
@@ -165,7 +182,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
                         variants={letterVariants}
                         style={{ display: "inline-block" }}
                       >
-                        {char === " " ? " " : char}
+                        {char === " " ? " " : char}
                       </motion.span>
                     ))}
                   </motion.span>
@@ -183,10 +200,12 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
             <Mic size={20} />
           </button>
           <button
-            className="flex items-center gap-1 bg-foreground text-background hover:bg-foreground/90 p-3 rounded-full font-medium justify-center transition"
+            className="flex items-center gap-1 bg-foreground text-background hover:bg-foreground/90 p-3 rounded-full font-medium justify-center transition disabled:opacity-50"
             title="Send"
             type="button"
             tabIndex={-1}
+            onClick={handleSubmit}
+            disabled={isLoading || !inputValue.trim()}
           >
             <Send size={18} />
           </button>
@@ -213,7 +232,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
           animate={isActive || inputValue ? "visible" : "hidden"}
           style={{ marginBottom: 8 }}
         >
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-4 mt-2 items-center">
             {/* Think Toggle */}
             <button
               className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all font-medium group ${
