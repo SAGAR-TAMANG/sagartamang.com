@@ -3,15 +3,12 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
 
-export type Message = {
-  id: string
-  role: "user" | "assistant"
-  content: string
-}
+import { type UIMessage } from "@ai-sdk/react"
 
 type MessageListUIProps = {
-  messages: Message[]
+  messages: UIMessage[]
   isThinking?: boolean
+  rateLimited?: boolean
 }
 
 // A simple reusable thinking dots animation
@@ -37,7 +34,8 @@ const ThinkingDots = () => {
 
 export const MessageListUI = ({ 
   messages, 
-  isThinking = false
+  isThinking = false,
+  rateLimited = false,
 }: MessageListUIProps) => {
   const scrollRef = React.useRef<HTMLDivElement>(null)
 
@@ -48,7 +46,7 @@ export const MessageListUI = ({
     }
   }, [messages, isThinking])
 
-  if (messages.length === 0 && !isThinking) return null
+  if (messages.length === 0 && !isThinking && !rateLimited) return null
 
   return (
     <motion.div
@@ -98,7 +96,19 @@ export const MessageListUI = ({
                         : "bg-accent/30 text-foreground border border-border rounded-2xl"
                     }`}
                   >
-                    {msg.content}
+                    {msg.parts.map((part, i) => {
+                      if (part.type === "reasoning") {
+                        return (
+                          <span key={i} className="block text-xs text-muted-foreground italic mb-2 border-l-2 pl-2 border-border">
+                            💭 {part.text}
+                          </span>
+                        )
+                      }
+                      if (part.type === "text") {
+                        return <span key={i}>{part.text}</span>
+                      }
+                      return null
+                    })}
                   </div>
                 </div>
               </motion.div>
@@ -124,6 +134,20 @@ export const MessageListUI = ({
             </motion.div>
           )}
         </AnimatePresence>
+
+          {/* Rate Limit Notice */}
+          {rateLimited && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex w-full justify-center"
+            >
+              <div className="px-4 py-3 text-sm leading-relaxed text-muted-foreground text-center">
+                🌙 daily limit reached. come back tomorrow!
+              </div>
+            </motion.div>
+          )}
       </motion.div>
     </motion.div>
   )
