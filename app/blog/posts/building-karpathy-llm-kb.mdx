@@ -1,0 +1,113 @@
+---
+title: 'The "Wiki Layer": Building Karpathy's LLM Knowledge Base'
+publishedAt: '2026-06-08'
+summary: 'Strip away the hype. Here is how to actually build an automated, local markdown knowledge base using LLMs and Obsidian — straight from Karpathy's own description.'
+---
+
+*Reference: Andrej Karpathy's original post on LLM Knowledge Bases: [https://x.com/karpathy/status/2039805659525644595](https://x.com/karpathy/status/2039805659525644595)*
+
+# 🧠 Build an Automated LLM Knowledge Base (The "Wiki Layer")
+
+If you spend any time on tech social media, you've probably seen the viral hooks about Karpathy's "token-saving hack." Let's strip away the engagement farming. What Andrej Karpathy actually described isn't magic — it's solid systems engineering.
+
+The core idea: LLMs waste compute and context when you force them to repeatedly read messy, raw web data. The solution is a data pipeline. You use an LLM to compile raw data into a clean, interconnected Markdown wiki *once*, then run all future queries against that structured wiki. Karpathy notes that a large fraction of his recent token throughput has shifted away from manipulating code and toward manipulating knowledge stored as Markdown and images.
+
+Here is how to build this system yourself.
+
+---
+
+### 1️⃣ The Directory Architecture
+
+Create a new directory on your machine. This will be your Obsidian vault and your knowledge system.
+
+```bash
+mkdir llm-brain
+cd llm-brain
+mkdir raw wiki
+```
+
+- `raw/`: The immutable source of truth. Dump PDFs, articles, repos, datasets, and images here. **Never edit these manually.**
+- `wiki/`: The clean Markdown output generated and maintained by your LLM — summaries, concept articles, backlinks, and categorized knowledge.
+
+---
+
+### 2️⃣ Data Ingest
+
+Source documents go into `raw/`. From there, you use an LLM to incrementally "compile" the wiki. The wiki includes:
+
+- Summaries of all data in `raw/`
+- Backlinks between related concepts
+- Categorized concept articles written and linked by the LLM
+
+To convert web articles into `.md` files, Karpathy recommends the **Obsidian Web Clipper** browser extension. He also uses a hotkey to download all related images to local storage so the LLM can easily reference them alongside the text.
+
+---
+
+### 3️⃣ The IDE Frontend (Obsidian)
+
+Open the root `llm-brain` folder in **Obsidian**.
+
+Obsidian acts as the IDE frontend where you can view the raw data, the compiled wiki, and any derived visualizations side by side. Crucially — **the LLM writes and maintains all the wiki data. You rarely touch it directly.** Karpathy has also played with Obsidian plugins like **Marp** to render wiki content as slides.
+
+---
+
+### 4️⃣ Querying the Wiki
+
+Once your wiki is big enough — Karpathy's example is around 100 articles and 400K words — you can ask your LLM agent complex questions against it. The LLM goes off, researches answers across the wiki, and returns results.
+
+He initially thought he'd need to reach for fancy RAG, but found the LLM handles it well at this scale by auto-maintaining index files and brief summaries of all documents, reading the important related data fairly easily without a vector database.
+
+---
+
+### 5️⃣ Rich Output Formats
+
+Instead of getting answers as plain terminal text, have the LLM render its output as files you can view directly in Obsidian:
+
+- **Markdown files** for written answers and summaries
+- **Marp slideshows** for structured presentations
+- **Matplotlib images** for visual data
+
+The key habit: file the outputs back into the wiki. Every query and exploration compounds — your knowledge base gets denser and more useful over time.
+
+---
+
+### 6️⃣ Linting and Health Checks
+
+Run periodic LLM "health checks" over the wiki to:
+
+- Find inconsistent or contradictory data
+- Impute missing data (using web search tools)
+- Identify interesting connections as candidates for new articles
+- Incrementally clean up and improve overall data integrity
+
+The LLMs are quite good at suggesting further questions to ask and look into. Treat your knowledge base like a codebase.
+
+---
+
+### 7️⃣ Extra Tools
+
+As the wiki grows, you'll naturally want additional tooling. Karpathy vibe-coded a small, naive search engine over his wiki. He uses it directly via a web UI, but more often hands it off to an LLM via CLI as a tool for larger, multi-step queries.
+
+---
+
+### 8️⃣ Further: Synthetic Data and Finetuning
+
+As the repo grows, the natural next step is **synthetic data generation and finetuning** — training an LLM to "know" your wiki in its weights rather than consuming it fresh through a context window on every query. The compiled wiki becomes training data for a model that internalizes your entire knowledge base.
+
+---
+
+### The Full Picture
+
+```
+raw data (articles, papers, repos, images)
+        ↓
+   LLM compiles into .md wiki
+        ↓
+   LLM operates via CLI for Q&A + enhancements
+        ↓
+   all of it viewable in Obsidian
+```
+
+You rarely write or edit the wiki manually. It is the domain of the LLM. As Karpathy puts it: there is room here for an incredible new product, rather than just a hacky collection of scripts.
+
+Stop falling for the buzzword takes. Build the system.
