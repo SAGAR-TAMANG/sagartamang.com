@@ -10,14 +10,15 @@ import { MessageListUI } from "./ai-message-list"
 export default function HomeChatBar() {
   const pathname = usePathname()
   const [isChatActive, setIsChatActive] = useState(false)
-  const [rateLimited, setRateLimited] = useState(false)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   const { messages, sendMessage, status } = useChat({
     onError: (error) => {
-      // useChat wraps non-2xx responses as errors
       // Check if the error message indicates rate limiting
-      if (error.message?.includes("429") || error.message?.includes("limit")) {
-        setRateLimited(true)
+      if (error.message?.includes("429") || error.message?.includes("limit") || error.message?.includes("Quota")) {
+        setErrorMsg("🌙 daily limit reached. come back tomorrow!")
+      } else {
+        setErrorMsg("⚠️ we encountered an error. please try again.")
       }
     },
   })
@@ -25,7 +26,8 @@ export default function HomeChatBar() {
   if (pathname !== "/") return null
 
   const handleSendMessage = async (text: string) => {
-    if (rateLimited) return
+    if (errorMsg === "🌙 daily limit reached. come back tomorrow!") return
+    setErrorMsg(null)
     await sendMessage({ text })
   }
 
@@ -33,7 +35,7 @@ export default function HomeChatBar() {
   const isThinking = status === "submitted"
   const isStreaming = status === "streaming"
   const isGenerating = isThinking || isStreaming
-  const hasMessages = messages.length > 0 || isThinking || rateLimited
+  const hasMessages = messages.length > 0 || isThinking || errorMsg !== null
 
   return (
     <>
@@ -67,7 +69,7 @@ export default function HomeChatBar() {
               <MessageListUI
                 messages={messages}
                 isThinking={isThinking}
-                rateLimited={rateLimited}
+                errorMsg={errorMsg}
               />
             </motion.div>
           )}

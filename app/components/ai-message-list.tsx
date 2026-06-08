@@ -8,7 +8,7 @@ import { type UIMessage } from "@ai-sdk/react"
 type MessageListUIProps = {
   messages: UIMessage[]
   isThinking?: boolean
-  rateLimited?: boolean
+  errorMsg?: string | null
 }
 
 // A simple reusable thinking dots animation
@@ -35,7 +35,7 @@ const ThinkingDots = () => {
 export const MessageListUI = ({ 
   messages, 
   isThinking = false,
-  rateLimited = false,
+  errorMsg = null,
 }: MessageListUIProps) => {
   const scrollRef = React.useRef<HTMLDivElement>(null)
 
@@ -46,7 +46,7 @@ export const MessageListUI = ({
     }
   }, [messages, isThinking])
 
-  if (messages.length === 0 && !isThinking && !rateLimited) return null
+  if (messages.length === 0 && !isThinking && !errorMsg) return null
 
   return (
     <motion.div
@@ -138,16 +138,16 @@ export const MessageListUI = ({
           )}
         </AnimatePresence>
 
-          {/* Rate Limit Notice */}
-          {rateLimited && (
+          {/* Error Notice */}
+          {errorMsg && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
               className="flex w-full justify-center"
             >
-              <div className="px-4 py-3 text-sm leading-relaxed text-muted-foreground text-center">
-                🌙 daily limit reached. come back tomorrow!
+              <div className="px-4 py-3 text-sm leading-relaxed text-muted-foreground text-center border border-destructive/20 bg-destructive/10 rounded-2xl">
+                {errorMsg}
               </div>
             </motion.div>
           )}
