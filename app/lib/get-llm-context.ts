@@ -1,14 +1,35 @@
+import { getBlogPosts } from 'app/blog/utils';
+import { getProjects } from 'app/projects/utils';
+
+export async function getLLMContext(): Promise<string> {
+  const blogs = getBlogPosts();
+  const projects = getProjects();
+
+  const baseUrl = 'https://sagartamang.com';
+  
+  const truncate = (str: string, maxLen: number) => 
+    str.length > maxLen ? str.slice(0, maxLen) + '...' : str;
+
+  const blogContext = blogs.map(b => 
+    `- ${truncate(b.metadata.title, 60)} (${b.metadata.publishedAt}): ${truncate(b.metadata.summary, 150)} [URL: ${baseUrl}/blog/${b.slug}]`
+  ).join('\n');
+  
+  const projectContext = projects.map(p => 
+    `- ${truncate(p.metadata.title, 60)}: ${truncate(p.metadata.summary, 150)} (Tech: ${p.metadata.tech || 'N/A'}) [URL: ${baseUrl}/projects/${p.slug}]`
+  ).join('\n');
+
+  return `
 # Sagar Tamang
 
-> Personal portfolio of Sagar Tamang — a 19-year-old AI Engineer based in Bengaluru, India. Specializes in agentic orchestration, multi-agent AI systems, and natural language processing for low-resource (Indian) languages, alongside full-stack software engineering. The site showcases his professional experience, award-winning research, and AI-driven web applications.
+> Personal portfolio of Sagar Tamang — a 19-year-old AI Engineer based in Bengaluru, India. Specializes in agentic orchestration, multi-agent AI systems, and natural language processing for low-resource (Indian) languages, alongside full-stack software engineering.
 
 - Website: https://sagartamang.com
 - Resume: https://sagartamang.com/resume.pdf
-- Email: build@sagartamang.com (brand collaborations & partnerships)
-- Enterprise AI solutions: https://twospoon.ai
+- Email: build@sagartamang.com
 - GitHub: https://github.com/SAGAR-TAMANG
 - LinkedIn: https://www.linkedin.com/in/sagar-tmg/
-- X / Twitter: https://x.com/sagar_builds (@sagar_builds)
+- X / Twitter: https://x.com/sagar_builds (@sagar_builds) - 1,300+ followers
+- Instagram: 108,000+ followers
 - Google Scholar: https://scholar.google.com/citations?hl=en&user=3mS0Y4wAAAAJ
 
 ## Overview
@@ -31,18 +52,15 @@ Sagar Tamang (also known online as @sagar_builds) is an AI Engineer focused on A
 
 - Enforcement Agents: Enhancing Accountability and Resilience in Multi-Agent AI Frameworks — Best Paper Award, ICDDA 2025.
 - Can LLMs Predict the Stock Market? A Comparative Analysis of AI-driven Financial Forecasting — Best Paper Award, ICDDA 2025.
-- [Task-Oriented Evaluation of Assamese Tokenizers Using Sentiment Classification](https://doi.org/10.14569/IJACSA.2025.0160979) — published in IJACSA (SAI Organization).
+- Task-Oriented Evaluation of Assamese Tokenizers Using Sentiment Classification — published in IJACSA (SAI Organization).
 - AI Poramorxo: Assamese Language NLP for Medical Report Generation and Translation — Best Paper Award, AICTE ICESCC 2024.
 
 ## Projects
 
-- [ChatGPT Browser MCP](https://github.com/SAGAR-TAMANG/chatgpt-browser-mcp): A Selenium-based Model Context Protocol server that runs ChatGPT natively.
-- [Assamese GPT](https://onuhondhan.feynmanpi.com/): An Assamese-language GPT web application built with Django and HTMX.
-- [Therapist AI](https://github.com/SAGAR-TAMANG/therapist-ai): A 24/7 AI-powered mental health support application.
-- [BharatGPT](https://github.com/SAGAR-TAMANG/bharatgpt-feynmanpi): A specialized LLM integration — India's answer to the AI revolution.
-- [SSB AI](https://github.com/SAGAR-TAMANG/ssb): India's first AI-powered Service Selection Board (SSB) interview exam preparation service.
+${projectContext}
 
-## More
+## Blog Posts
 
-- Blog / writings: https://sagartamang.com/blog
-- All projects: https://sagartamang.com/projects
+${blogContext}
+  `.trim();
+}
