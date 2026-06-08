@@ -21,7 +21,7 @@ export default function HomeChatBar() {
           <>
             <motion.div
               key="chat-backdrop"
-              className="fixed inset-0 z-40 backdrop-blur-sm bg-white/70 dark:bg-black/70"
+              className="fixed inset-0 z-40 backdrop-blur-sm bg-background/70"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -29,7 +29,7 @@ export default function HomeChatBar() {
             />
             <motion.p
               key="chat-coming-soon"
-              className="fixed inset-0 z-40 flex items-center justify-center font-sans normal-case text-neutral-500 dark:text-neutral-400 text-sm pointer-events-none"
+              className="fixed inset-0 z-40 flex items-center justify-center font-sans normal-case text-muted-foreground text-sm pointer-events-none"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 6 }}

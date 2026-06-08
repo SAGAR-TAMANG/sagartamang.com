@@ -76,7 +76,7 @@ export default async function Project({ params }) {
       </h1>
       
       <div className="flex justify-between items-center mt-2">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="text-sm text-muted-foreground">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
@@ -89,7 +89,7 @@ export default async function Project({ params }) {
              alt={post.metadata.title} 
              width={800} 
              height={400} 
-             className="rounded-lg border border-neutral-200 dark:border-neutral-800"
+             className="rounded-lg border border-border"
            />
         </div>
       )}

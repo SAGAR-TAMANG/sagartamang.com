@@ -9,7 +9,7 @@ const Contact = () => {
           for brand collabs and partnerships, reach me at {' '}
           <a
             href="mailto:build@sagartamang.com"
-            className="underline hover:decoration-neutral-400 underline-offset-4 hover:text-neutral-800 dark:hover:text-neutral-100 transition-colors"
+            className="underline hover:decoration-muted-foreground underline-offset-4 hover:text-foreground transition-colors"
           >
             build@sagartamang.com
           </a>.
@@ -19,7 +19,7 @@ const Contact = () => {
           <a target="_blank"
             rel="noopener noreferrer"
             href="https://twospoon.ai/"
-            className="underline hover:decoration-neutral-400 underline-offset-4"
+            className="underline hover:decoration-muted-foreground underline-offset-4"
           >
             twospoon.ai
           </a>.
@@ -29,7 +29,7 @@ const Contact = () => {
           <a
             href="/resume.pdf"
             target="_blank"
-            className="underline hover:decoration-neutral-400 underline-offset-4 hover:text-neutral-800 dark:hover:text-neutral-100 transition-colors"
+            className="underline hover:decoration-muted-foreground underline-offset-4 hover:text-foreground transition-colors"
           >
             resume
           </a>.

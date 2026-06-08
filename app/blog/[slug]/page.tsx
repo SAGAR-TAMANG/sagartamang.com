@@ -94,7 +94,7 @@ export default async function Blog({ params }) {
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8">
-        <p className="text-neutral-600 dark:text-neutral-400">
+        <p className="text-muted-foreground">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>

@@ -31,10 +31,10 @@ export function BlogPosts({ limit }: BlogPostsProps) {
           href={`/blog/${post.slug}`}
         >
           <div className="w-full grid grid-cols-[8rem_1fr] md:grid-cols-[9rem_1fr] items-baseline gap-2">
-            <p className="text-neutral-600 dark:text-neutral-400 tabular-nums">
+            <p className="text-muted-foreground tabular-nums">
               {formatDate(post.metadata.publishedAt, false)}
             </p>
-            <p className="text-neutral-900 dark:text-neutral-100 tracking-tight underline hover:decoration-neutral-400 underline-offset-4">
+            <p className="text-foreground tracking-tight underline hover:decoration-muted-foreground underline-offset-4">
               {post.metadata.title}
             </p>
           </div>
@@ -45,7 +45,7 @@ export function BlogPosts({ limit }: BlogPostsProps) {
       {showViewAll && (
         <Link
           href="/blog"
-          className="inline-flex items-center underline hover:decoration-neutral-400 underline-offset-4"
+          className="inline-flex items-center underline hover:decoration-muted-foreground underline-offset-4"
         >
           Read all writings
         </Link>

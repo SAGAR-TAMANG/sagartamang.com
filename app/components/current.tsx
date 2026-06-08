@@ -29,7 +29,7 @@ const Current = () => {
           <a target="_blank"
             rel="noopener noreferrer"
             href="https://scholar.google.com/citations?hl=en&user=3mS0Y4wAAAAJ"
-            className="underline hover:decoration-neutral-400 underline-offset-4"
+            className="underline hover:decoration-muted-foreground underline-offset-4"
           >
             google scholar
           </a>

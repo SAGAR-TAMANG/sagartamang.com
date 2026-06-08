@@ -117,7 +117,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        'text-black bg-white dark:text-white dark:bg-black',
+        'text-foreground bg-background',
         playfair.variable,
         manrope.variable
       )}

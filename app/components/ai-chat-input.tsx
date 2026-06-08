@@ -113,7 +113,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
   return (
     <motion.div
       ref={wrapperRef}
-      className="w-full max-w-xl pointer-events-auto text-black dark:text-white bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+      className="w-full max-w-xl pointer-events-auto text-primary-foreground bg-primary border border-border"
       variants={containerVariants}
       animate={isActive || inputValue ? "expanded" : "collapsed"}
       initial="collapsed"
@@ -124,7 +124,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
         {/* Input Row */}
         <div className="flex items-center gap-2 p-3 rounded-full w-full">
           <button
-            className="p-3 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition"
+            className="p-3 rounded-full hover:bg-secondary transition"
             title="Attach file"
             type="button"
             tabIndex={-1}
@@ -147,7 +147,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
                 {showPlaceholder && !isActive && !inputValue && (
                   <motion.span
                     key={placeholderIndex}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 text-neutral-400 select-none pointer-events-none"
+                    className="absolute left-0 top-1/2 -translate-y-1/2 text-muted-foreground select-none pointer-events-none"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "hidden",
@@ -175,7 +175,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
           </div>
 
           <button
-            className="p-3 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition"
+            className="p-3 rounded-full hover:bg-secondary transition"
             title="Voice input"
             type="button"
             tabIndex={-1}
@@ -183,7 +183,7 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
             <Mic size={20} />
           </button>
           <button
-            className="flex items-center gap-1 bg-black text-white hover:bg-neutral-700 dark:bg-white dark:text-black dark:hover:bg-neutral-200 p-3 rounded-full font-medium justify-center transition"
+            className="flex items-center gap-1 bg-foreground text-background hover:bg-foreground/90 p-3 rounded-full font-medium justify-center transition"
             title="Send"
             type="button"
             tabIndex={-1}
@@ -218,8 +218,8 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
             <button
               className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all font-medium group ${
                 thinkActive
-                  ? "bg-blue-600/10 outline outline-blue-600/60 text-blue-950 dark:text-blue-100"
-                  : "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+                  ? "bg-accent outline outline-accent-foreground/20 text-accent-foreground"
+                  : "bg-secondary text-secondary-foreground hover:bg-muted"
               }`}
               title="Think"
               type="button"
@@ -239,8 +239,8 @@ const AIChatInput = ({ onActiveChange }: AIChatInputProps) => {
             <motion.button
               className={`flex items-center px-4 gap-1 py-2 rounded-full transition font-medium whitespace-nowrap overflow-hidden justify-start ${
                 deepSearchActive
-                  ? "bg-blue-600/10 outline outline-blue-600/60 text-blue-950 dark:text-blue-100"
-                  : "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+                  ? "bg-accent outline outline-accent-foreground/20 text-accent-foreground"
+                  : "bg-secondary text-secondary-foreground hover:bg-muted"
               }`}
               title="Deep Search"
               type="button"

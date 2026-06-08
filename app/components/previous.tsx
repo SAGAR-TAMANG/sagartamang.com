@@ -14,7 +14,7 @@ const Previous = () => {
             <a target="_blank" 
               rel="noopener noreferrer"
               href="https://leapx.ai/"
-              className="underline hover:decoration-neutral-400 underline-offset-4"
+              className="underline hover:decoration-muted-foreground underline-offset-4"
             >leapx.ai</a>
             {' '} ~ ai engineer intern [gurgaon, india]
           </p>
@@ -26,7 +26,7 @@ const Previous = () => {
             <a target="_blank" 
               rel="noopener noreferrer"
               href="https://composio.dev/"
-              className="underline hover:decoration-neutral-400 underline-offset-4"
+              className="underline hover:decoration-muted-foreground underline-offset-4"
             >composio.dev</a>
             {' '} ~ software engineering (python) [bangalore, india]
           </p>
@@ -38,7 +38,7 @@ const Previous = () => {
             <a target="_blank" 
               rel="noopener noreferrer"
               href="https://successscholar.in/"
-              className="underline hover:decoration-neutral-400 underline-offset-4"
+              className="underline hover:decoration-muted-foreground underline-offset-4"
             >successscholar.in</a>
             {' '} ~ product owner/developer [kolkata, india]
           </p>
