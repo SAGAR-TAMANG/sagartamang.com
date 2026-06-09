@@ -20,9 +20,10 @@ const ratelimit = new Ratelimit({
 export async function POST(req: Request) {
   // Extract client IP from headers
   const headersList = await headers();
+  const cfIp = headersList.get('cf-connecting-ip');
   const forwarded = headersList.get('x-forwarded-for');
   const realIp = headersList.get('x-real-ip');
-  const ip = forwarded?.split(',')[0]?.trim() || realIp || 'unknown';
+  const ip = cfIp || forwarded?.split(',')[0]?.trim() || realIp || 'unknown';
 
   if (process.env.NODE_ENV === "development") {
     console.log(`[Chat API] Request from IP: ${ip}`);
