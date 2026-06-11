@@ -36,7 +36,7 @@ const Current = () => {
             google scholar
           </HoverLinkPreview>
           . bachelors' gold medalist. masters student @ IIT Patna and IIIT Ranchi.</p>
-        <p>enjoy coding, content creation, writing, superbikes, and reading ancient greek texts.</p>
+        <p>enjoy coding, content creation, writing, superbikes, and reading ancient greek philosophy & history.</p>
         <p>i can build <span className="italic font-semibold">anything.</span></p>
       </div>
     </section>
