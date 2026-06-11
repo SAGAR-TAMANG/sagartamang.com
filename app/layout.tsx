@@ -122,7 +122,7 @@ export default function RootLayout({
         manrope.variable
       )}
     >
-      <body className={`font-serif antialiased max-w-2xl mx-4 my-16 lg:my-24 lg:mx-auto text-sm md:text-base tracking-tight lowercase`}>
+      <body className={`font-serif antialiased max-w-2xl mx-auto px-4 my-16 lg:my-24 text-sm md:text-base tracking-tight lowercase`}>
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           {children}
           <Footer />
