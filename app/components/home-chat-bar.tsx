@@ -86,8 +86,8 @@ export default function HomeChatBar() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="bg-primary rounded-lg py-2 text-[11px] text-muted-foreground text-center max-w-xl pointer-events-auto px-4 normal-case leading-normal"
             >
-              Everyone makes mistakes, including this AI powered by Google's Gemini 2.0 Flash and Vercel AI SDK. Make sure to double-check important information. Locate{" "}
-              <a href="/llms.txt" className="underline hover:text-foreground transition-colors">
+              Everyone makes mistakes, including this AI powered by Google's Gemini 2.0 Flash and Vercel AI SDK. Locate{" "}
+              <a href="/llms.txt" className="underline hover:text-foreground transition-colors" target="_blank">
                 LLMs.txt
               </a>{" "}
               for context aware conversation.

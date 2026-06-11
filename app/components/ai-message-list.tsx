@@ -52,7 +52,7 @@ export const MessageListUI = ({
     <motion.div
       id="ai-message-list-container"
       layout
-      className="w-full max-w-xl text-primary-foreground bg-primary border border-border shadow-sm pointer-events-auto"
+      className="w-full max-w-xl text-primary-foreground bg-primary border border-border shadow-sm pointer-events-auto rounded-lg"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
@@ -61,7 +61,7 @@ export const MessageListUI = ({
         damping: 20,
         layout: { duration: 0.3, type: "spring", bounce: 0 } 
       }}
-      style={{ overflow: "hidden", borderRadius: 32 }}
+      style={{ overflow: "hidden" }}
     >
       {/* Scrollable Message Container */}
       <motion.div 
@@ -93,8 +93,8 @@ export const MessageListUI = ({
                   <div 
                     className={`px-4 py-3 text-sm leading-relaxed ${
                       isUser 
-                        ? "bg-secondary text-secondary-foreground rounded-2xl" 
-                        : "bg-accent/30 text-foreground border border-border rounded-2xl"
+                        ? "bg-secondary text-secondary-foreground rounded-lg" 
+                        : "bg-accent/30 text-foreground border border-border rounded-lg"
                     }`}
                   >
                     {msg.parts.map((part, i) => {
@@ -128,7 +128,7 @@ export const MessageListUI = ({
               className="flex w-full justify-start"
             >
               <div className="flex gap-3 max-w-[85%] flex-row">
-                <div className="px-4 py-3 text-sm leading-relaxed bg-accent/30 text-foreground border border-border rounded-2xl flex items-center">
+                <div className="px-4 py-3 text-sm leading-relaxed bg-accent/30 text-foreground border border-border rounded-lg flex items-center">
                   <ThinkingDots />
                 </div>
               </div>
@@ -144,7 +144,7 @@ export const MessageListUI = ({
               transition={{ duration: 0.3 }}
               className="flex w-full justify-center"
             >
-              <div className="px-4 py-3 text-sm leading-relaxed text-muted-foreground text-center border border-destructive/20 bg-destructive/10 rounded-2xl">
+              <div className="px-4 py-3 text-sm leading-relaxed text-muted-foreground text-center border border-destructive/20 bg-destructive/10 rounded-lg">
                 {errorMsg}
               </div>
             </motion.div>
