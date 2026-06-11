@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import { AnimatePresence, motion } from "motion/react"
 import { useChat } from "@ai-sdk/react"
 import dynamic from "next/dynamic"
 import { AIChatInput } from "./ai-chat-input"
+import { HybridChatTransport, isBrowserAIReady } from "app/lib/browser-ai-chat"
 
 // Loaded only when the chat opens — keeps it out of the initial JS bundle
 const MessageListUI = dynamic(
@@ -17,11 +18,34 @@ export default function HomeChatBar() {
   const pathname = usePathname()
   const [isChatActive, setIsChatActive] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [isLocalAI, setIsLocalAI] = useState(false)
+
+  // Detect once whether the browser ships a ready-to-use on-device model
+  // (Gemini Nano in Chrome, Phi-4-mini in Edge). Drives the footer notice;
+  // the transport below does its own check per request.
+  useEffect(() => {
+    let cancelled = false
+    isBrowserAIReady().then((ready) => {
+      if (!cancelled) setIsLocalAI(ready)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  // Keep one transport instance for the lifetime of the chat
+  const transportRef = useRef<HybridChatTransport | null>(null)
+  if (transportRef.current === null) {
+    transportRef.current = new HybridChatTransport()
+  }
 
   const { messages, sendMessage, status } = useChat({
+    transport: transportRef.current,
     onError: (error) => {
-      // Check if the error message indicates rate limiting
-      if (error.message?.includes("429") || error.message?.includes("limit") || error.message?.includes("Quota")) {
+      // Check if the error message indicates rate limiting.
+      // Local (on-device) requests never hit the server, so they can't be rate limited —
+      // without this guard a Prompt API quota error would falsely lock the chat.
+      if (!isLocalAI && (error.message?.includes("429") || error.message?.includes("limit") || error.message?.includes("Quota"))) {
         setErrorMsg("🌙 daily limit reached. come back tomorrow!")
       } else {
         setErrorMsg("⚠️ we encountered an error. please try again.")
@@ -92,7 +116,16 @@ export default function HomeChatBar() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="bg-primary rounded-lg py-2 text-[11px] text-muted-foreground text-center max-w-xl pointer-events-auto px-4 normal-case leading-normal"
             >
-              Everyone makes mistakes, including this AI powered by Google's Gemini 2.5 Flash and Vercel AI SDK. Locate{" "}
+              {isLocalAI ? (
+                <>
+                  ✨ Your browser supports local AI — this chat runs entirely on-device using your browser's built-in model. No prompts leave your machine, and there are no rate limits. Everyone makes mistakes, including this AI.{" "}
+                </>
+              ) : (
+                <>
+                  Everyone makes mistakes, including this AI powered by Google's Gemini 2.5 Flash and Vercel AI SDK.{" "}
+                </>
+              )}
+              Locate{" "}
               <a href="/llms.txt" className="underline hover:text-foreground transition-colors" target="_blank">
                 LLMs.txt
               </a>{" "}

@@ -8,6 +8,7 @@
   "dependencies": {
     "@ai-sdk/google": "^3.0.80",
     "@ai-sdk/react": "^3.0.199",
+    "@browser-ai/core": "^2.1.12",
     "@next/third-parties": "^16.1.1",
     "@tailwindcss/postcss": "4.0.0-alpha.13",
     "@types/node": "20.11.17",
