@@ -86,34 +86,49 @@ const HoverLinkPreview = ({
 
       {mounted &&
         createPortal(
-          <AnimatePresence>
-            {showPreview && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8, y: -10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.8, y: -10 }}
-                style={{
-                  position: "fixed",
-                  top: springTop,
-                  left: springLeft,
-                  rotate: springRotate,
-                  zIndex: 50,
-                  pointerEvents: "none",
-                }}
-              >
-                <div className="bg-background border border-border rounded-2xl shadow-lg p-2">
-                  <Image
-                    src={previewImage}
-                    alt={imageAlt}
-                    width={PREVIEW_WIDTH}
-                    height={PREVIEW_HEIGHT}
-                    draggable={false}
-                    className="w-48 h-28 object-cover rounded-md"
-                  />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>,
+          <>
+            {/* Preload: rendered hidden so the browser fetches and caches the image on mount */}
+            <div
+              aria-hidden="true"
+              style={{ position: "absolute", width: 0, height: 0, overflow: "hidden", opacity: 0, pointerEvents: "none" }}
+            >
+              <Image
+                src={previewImage}
+                alt=""
+                width={PREVIEW_WIDTH}
+                height={PREVIEW_HEIGHT}
+              />
+            </div>
+
+            <AnimatePresence>
+              {showPreview && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                  style={{
+                    position: "fixed",
+                    top: springTop,
+                    left: springLeft,
+                    rotate: springRotate,
+                    zIndex: 50,
+                    pointerEvents: "none",
+                  }}
+                >
+                  <div className="bg-background border border-border rounded-2xl shadow-lg p-2">
+                    <Image
+                      src={previewImage}
+                      alt={imageAlt}
+                      width={PREVIEW_WIDTH}
+                      height={PREVIEW_HEIGHT}
+                      draggable={false}
+                      className="w-48 h-28 object-cover rounded-md"
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </>,
           document.body
         )}
     </>
