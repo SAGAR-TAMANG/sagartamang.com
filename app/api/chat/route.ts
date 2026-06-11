@@ -1,5 +1,5 @@
 import { google } from '@ai-sdk/google';
-import { streamText, convertToModelMessages } from 'ai';
+import { streamText, convertToModelMessages, smoothStream } from 'ai';
 import { headers } from 'next/headers';
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
@@ -104,6 +104,7 @@ ${dynamicContext}
   const result = streamText({
     model: google('gemini-2.5-flash'),
     messages: limitedMessages,
+    experimental_transform: smoothStream(),
     // ── 3. Output Token Protection ──────────────────────────────
     // Cap the AI's response length so it doesn't generate essays and burn output tokens
     maxOutputTokens: 300,
