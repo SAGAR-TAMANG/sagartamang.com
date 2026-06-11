@@ -62,8 +62,6 @@ export const MessageListUI = ({
         layout: { duration: 0.3, type: "spring", bounce: 0 } 
       }}
       style={{ overflow: "hidden", borderRadius: 32 }}
-      onMouseDown={(e) => e.stopPropagation()}
-      onTouchStart={(e) => e.stopPropagation()}
     >
       {/* Scrollable Message Container */}
       <motion.div 

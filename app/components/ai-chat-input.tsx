@@ -61,7 +61,7 @@ const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AICha
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (target.closest('#ai-message-list-container')) return;
+      if (target.closest('#ai-message-list-container') || target.closest('#ai-chat-message-footer')) return;
 
       if (
         wrapperRef.current &&
@@ -131,18 +131,18 @@ const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AICha
   return (
     <motion.div
       ref={wrapperRef}
-      className="w-full max-w-xl pointer-events-auto text-primary-foreground bg-primary border border-border"
+      className="w-full max-w-xl pointer-events-auto text-primary-foreground bg-primary border border-border rounded-lg"
       variants={containerVariants}
       animate={isActive || inputValue ? "expanded" : "collapsed"}
       initial="collapsed"
-      style={{ overflow: "hidden", borderRadius: 32 }}
+      style={{ overflow: "hidden" }}
       onClick={handleActivate}
     >
       <div className="flex flex-col-reverse items-stretch w-full h-full">
         {/* Input Row */}
-        <div className="flex items-center gap-2 p-3 rounded-full w-full">
+        <div className="flex items-center gap-2 p-3 rounded-lg w-full">
           <button
-            className="p-3 rounded-full hover:bg-secondary transition"
+            className="p-3 rounded-lg hover:bg-secondary transition"
             title="Attach file"
             type="button"
             tabIndex={-1}
@@ -185,7 +185,7 @@ const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AICha
                         variants={letterVariants}
                         style={{ display: "inline-block" }}
                       >
-                        {char === " " ? " " : char}
+                        {char === " " ? "\u00A0" : char}
                       </motion.span>
                     ))}
                   </motion.span>
@@ -195,7 +195,7 @@ const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AICha
           </div>
 
           <button
-            className="p-3 rounded-full hover:bg-secondary transition"
+            className="p-3 rounded-lg hover:bg-secondary transition"
             title="Voice input"
             type="button"
             tabIndex={-1}
@@ -203,7 +203,7 @@ const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AICha
             <Mic size={20} />
           </button>
           <button
-            className="flex items-center gap-1 bg-foreground text-background hover:bg-foreground/90 p-3 rounded-full font-medium justify-center transition disabled:opacity-50"
+            className="flex items-center gap-1 bg-foreground text-background hover:bg-foreground/90 p-3 rounded-lg font-medium justify-center transition disabled:opacity-50"
             title="Send"
             type="button"
             tabIndex={-1}
@@ -238,7 +238,7 @@ const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AICha
           <div className="flex gap-4 mt-2 items-center">
             {/* Think Toggle */}
             <button
-              className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all font-medium group ${
+              className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-all font-medium group ${
                 thinkActive
                   ? "bg-accent outline outline-accent-foreground/20 text-accent-foreground"
                   : "bg-secondary text-secondary-foreground hover:bg-muted"
@@ -259,7 +259,7 @@ const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AICha
 
             {/* Deep Search Toggle */}
             <motion.button
-              className={`flex items-center px-4 gap-1 py-2 rounded-full transition font-medium whitespace-nowrap overflow-hidden justify-start ${
+              className={`flex items-center px-4 gap-1 py-2 rounded-lg transition font-medium whitespace-nowrap overflow-hidden justify-start ${
                 deepSearchActive
                   ? "bg-accent outline outline-accent-foreground/20 text-accent-foreground"
                   : "bg-secondary text-secondary-foreground hover:bg-muted"

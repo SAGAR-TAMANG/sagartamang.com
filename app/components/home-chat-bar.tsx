@@ -74,6 +74,27 @@ export default function HomeChatBar() {
             </motion.div>
           )}
         </AnimatePresence>
+        
+        <AnimatePresence>
+          {isChatActive && (
+            <motion.div
+              key="ai-chat-message-footer"
+              id="ai-chat-message-footer"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="bg-primary rounded-lg py-2 text-[11px] text-muted-foreground text-center max-w-xl pointer-events-auto px-4 normal-case leading-normal"
+            >
+              Everyone makes mistakes, including this AI powered by Google's Gemini 2.0 Flash and Vercel AI SDK. Make sure to double-check important information. Locate{" "}
+              <a href="/llms.txt" className="underline hover:text-foreground transition-colors">
+                LLMs.txt
+              </a>{" "}
+              for context aware conversation.
+            </motion.div>
+          )}
+        </AnimatePresence>
+        
         <AIChatInput
           onActiveChange={setIsChatActive}
           onSendMessage={handleSendMessage}
