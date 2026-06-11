@@ -38,6 +38,17 @@ const Contact = () => {
             resume
           </HoverLinkPreview>.
         </p>
+        <p>
+          or just chat with me —{' '}
+          <HoverLinkPreview
+            href="https://cal.com/sagar-tamang/feynman-pi?user=sagar-tamang"
+            previewImage="/previews/calcom.webp"
+            imageAlt="Cal.com booking preview"
+            className="underline hover:decoration-muted-foreground underline-offset-4 hover:text-foreground transition-colors"
+          >
+            book a time
+          </HoverLinkPreview>.
+        </p>
       </div>
     </section>
   )
