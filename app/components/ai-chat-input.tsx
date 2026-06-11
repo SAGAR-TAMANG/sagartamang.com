@@ -161,6 +161,7 @@ const AIChatInput = ({ onActiveChange, onSendMessage, isLoading = false }: AICha
               onFocus={handleActivate}
               onKeyDown={handleKeyDown}
               disabled={isLoading}
+              aria-label="Ask me anything about Sagar"
             />
             <div className="absolute left-0 top-0 w-full h-full pointer-events-none flex items-center px-3 py-2">
               <AnimatePresence mode="wait">

@@ -1,3 +1,4 @@
+import type * as React from 'react';
 import {
   SiX,
   SiGithub,
@@ -6,9 +7,9 @@ import {
   SiGooglescholar
 } from 'react-icons/si';
 
-function RssIcon() {
+function RssIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" {...props}>
       <path d="M4 11a9 9 0 0 1 9 9" style={{ fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' }} />
       <path d="M4 4a16 16 0 0 1 16 16" style={{ fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' }} />
       <circle cx="5" cy="19" r="1" />
@@ -78,7 +79,7 @@ export default function Footer() {
               href={link.url}
               aria-label={link.name}
             >
-              <link.icon />
+              <link.icon aria-hidden="true" focusable="false" />
             </a>
           </li>
         ))}
