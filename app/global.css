@@ -41,8 +41,8 @@
   --secondary-foreground: #404040; /* neutral-700 */
   
   --muted: #f5f5f5; /* neutral-100 */
-  --muted-foreground: #a3a3a3; /* neutral-400 */
-  
+  --muted-foreground: #737373; /* neutral-500 — ~4.7:1 on white, passes WCAG AA */
+
   --accent: rgba(37, 99, 235, 0.1);
   --accent-foreground: #1e3a8a; /* blue-950 */
   
