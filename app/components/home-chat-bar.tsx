@@ -4,8 +4,14 @@ import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { AnimatePresence, motion } from "motion/react"
 import { useChat } from "@ai-sdk/react"
+import dynamic from "next/dynamic"
 import { AIChatInput } from "./ai-chat-input"
-import { MessageListUI } from "./ai-message-list"
+
+// Loaded only when the chat opens — keeps it out of the initial JS bundle
+const MessageListUI = dynamic(
+  () => import("./ai-message-list").then((mod) => mod.MessageListUI),
+  { ssr: false }
+)
 
 export default function HomeChatBar() {
   const pathname = usePathname()
