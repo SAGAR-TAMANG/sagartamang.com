@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="224" viewBox="0 0 384 224">
+  <rect width="384" height="224" fill="#ffffff"/>
+  <rect width="384" height="6" fill="#4285f4"/>
+  <path d="M192 58l-44 24 44 24 44-24z" fill="#4285f4"/>
+  <path d="M164 96v22c0 10 12.5 18 28 18s28-8 28-18V96l-28 15.3z" fill="#a0c3ff"/>
+  <text x="192" y="170" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#202124">Google Scholar</text>
+  <text x="192" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#5f6368">30+ citations · 4 best paper awards</text>
+</svg>
