@@ -29,7 +29,7 @@ export async function getLLMContext(): Promise<string> {
 - GitHub: https://github.com/SAGAR-TAMANG
 - LinkedIn: https://www.linkedin.com/in/sagar-tmg/
 - X / Twitter: https://x.com/sagar_builds (@sagar_builds) - 1,300+ followers
-- Instagram: 108,000+ followers
+- Instagram: https://www.instagram.com/sagar_builds/ (@sagar_builds) - 109,000+ followers
 - Google Scholar: https://scholar.google.com/citations?hl=en&user=3mS0Y4wAAAAJ
 
 ## Overview

@@ -2,13 +2,56 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
+import { Streamdown, type Components } from "streamdown"
+import "streamdown/styles.css"
 
-import { type UIMessage } from "@ai-sdk/react"
+import { type ChatMessage } from "app/lib/chat-tools"
+import { PROFILE_LINKS } from "app/lib/profile-links"
 
 type MessageListUIProps = {
-  messages: UIMessage[]
+  messages: ChatMessage[]
   isThinking?: boolean
   errorMsg?: string | null
+}
+
+// Tailwind 4 alpha can't scan node_modules (@source landed later), so
+// Streamdown's built-in classes never make it into the CSS. Override the
+// elements we care about with the site's own utilities instead.
+const markdownComponents: Components = {
+  a: ({ node, children, ...props }) => (
+    <a
+      {...props}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="underline underline-offset-4 decoration-muted-foreground hover:text-accent-foreground transition-colors"
+    >
+      {children}
+    </a>
+  ),
+  p: ({ node, ...props }) => <p {...props} className="my-1 first:mt-0 last:mb-0" />,
+  ul: ({ node, ...props }) => <ul {...props} className="list-disc pl-5 my-1 space-y-0.5" />,
+  ol: ({ node, ...props }) => <ol {...props} className="list-decimal pl-5 my-1 space-y-0.5" />,
+  strong: ({ node, ...props }) => <strong {...props} className="font-semibold" />,
+  inlineCode: ({ node, ...props }) => (
+    <code {...props} className="bg-secondary px-1 py-0.5 rounded text-[0.85em]" />
+  ),
+}
+
+const LinkButton = ({ target }: { target: keyof typeof PROFILE_LINKS }) => {
+  const link = PROFILE_LINKS[target]
+  if (!link) return null
+
+  return (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex w-fit items-center gap-1.5 mt-2 px-3 py-1.5 text-xs font-medium bg-secondary text-secondary-foreground border border-border rounded-md hover:bg-accent/30 hover:text-foreground transition-colors"
+    >
+      {link.label}
+      <span aria-hidden>↗</span>
+    </a>
+  )
 }
 
 // A simple reusable thinking dots animation
@@ -106,7 +149,19 @@ export const MessageListUI = ({
                         )
                       }
                       if (part.type === "text") {
-                        return <span key={i}>{part.text}</span>
+                        return isUser ? (
+                          <span key={i}>{part.text}</span>
+                        ) : (
+                          <Streamdown key={i} components={markdownComponents} controls={false}>
+                            {part.text}
+                          </Streamdown>
+                        )
+                      }
+                      if (part.type === "tool-showLinkButton") {
+                        // Display-only tool (no execute), so input-available is
+                        // its final state; earlier states have partial input.
+                        if (part.state !== "input-available") return null
+                        return <LinkButton key={i} target={part.input.target} />
                       }
                       return null
                     })}

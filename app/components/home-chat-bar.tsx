@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { AnimatePresence, motion } from "motion/react"
 import { useChat } from "@ai-sdk/react"
 import dynamic from "next/dynamic"
+import { type ChatMessage } from "app/lib/chat-tools"
 import { AIChatInput } from "./ai-chat-input"
 
 // Loaded only when the chat opens — keeps it out of the initial JS bundle
@@ -18,7 +19,7 @@ export default function HomeChatBar() {
   const [isChatActive, setIsChatActive] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status } = useChat<ChatMessage>({
     onError: (error) => {
       // Check if the error message indicates rate limiting
       if (error.message?.includes("429") || error.message?.includes("limit") || error.message?.includes("Quota")) {
