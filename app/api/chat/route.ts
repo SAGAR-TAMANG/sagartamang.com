@@ -8,7 +8,7 @@ import { chatTools } from "app/lib/chat-tools";
 
 export const maxDuration = 30;
 
-const DAILY_LIMIT = process.env.NODE_ENV === "development" ? 15 : 10;
+const DAILY_LIMIT = process.env.NODE_ENV === "development" ? 20 : 10;
 
 // Create a new ratelimiter, that allows 10 requests per 1 day
 // Note: You must add UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN to your .env file

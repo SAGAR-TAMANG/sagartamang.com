@@ -46,7 +46,7 @@ const LinkButton = ({ target }: { target: keyof typeof PROFILE_LINKS }) => {
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex w-fit items-center gap-1.5 mt-2 px-3 py-1.5 text-xs font-medium bg-secondary text-secondary-foreground border border-border rounded-md hover:bg-accent/30 hover:text-foreground transition-colors"
+      className="inline-flex w-fit items-center gap-1.5 mt-2 me-1 px-3 py-1.5 text-xs font-medium bg-secondary text-secondary-foreground border border-border rounded-md hover:bg-accent/30 hover:text-foreground transition-colors"
     >
       {link.label}
       <span aria-hidden>↗</span>
