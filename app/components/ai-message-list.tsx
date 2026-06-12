@@ -7,6 +7,7 @@ import "streamdown/styles.css"
 
 import { type ChatMessage } from "app/lib/chat-tools"
 import { PROFILE_LINKS } from "app/lib/profile-links"
+import { SpecialText } from "./special-text"
 
 type MessageListUIProps = {
   messages: ChatMessage[]
@@ -54,24 +55,20 @@ const LinkButton = ({ target }: { target: keyof typeof PROFILE_LINKS }) => {
   )
 }
 
-// A simple reusable thinking dots animation
-const ThinkingDots = () => {
+const THINKING_PHRASES = ["thinking...", "searching...", "reasoning...", "on it...", "processing..."]
+
+const ThinkingText = () => {
+  const [idx, setIdx] = React.useState(0)
+
   return (
-    <div className="flex gap-1 px-1 py-1 items-center justify-center h-5">
-      {[0, 1, 2].map((dot) => (
-        <motion.div
-          key={dot}
-          className="w-1.5 h-1.5 bg-foreground/50 rounded-full"
-          animate={{ y: [0, -3, 0], opacity: [0.4, 1, 0.4] }}
-          transition={{
-            duration: 0.6,
-            repeat: Infinity,
-            delay: dot * 0.2,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
+    <SpecialText
+      speed={18}
+      holdDuration={1000}
+      onComplete={() => setIdx((i) => (i + 1) % THINKING_PHRASES.length)}
+      className="text-sm text-muted-foreground"
+    >
+      {THINKING_PHRASES[idx]}
+    </SpecialText>
   )
 }
 
@@ -182,11 +179,7 @@ export const MessageListUI = ({
               transition={{ duration: 0.3 }}
               className="flex w-full justify-start"
             >
-              <div className="flex gap-3 max-w-[85%] flex-row">
-                <div className="px-4 py-3 text-sm leading-relaxed bg-accent/30 text-foreground border border-border rounded-lg flex items-center">
-                  <ThinkingDots />
-                </div>
-              </div>
+                <ThinkingText />
             </motion.div>
           )}
         </AnimatePresence>
