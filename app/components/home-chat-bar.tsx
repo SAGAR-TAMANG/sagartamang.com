@@ -12,30 +12,9 @@ import { AIChatInput } from "./ai-chat-input"
 // pipeline), but warmed in the background — see the idle prefetch below.
 const preloadMessageList = () => import("./ai-message-list")
 
-// Worst-case fallback while the chunk downloads (cold cache + instant send):
-// mirrors the message list container with thinking dots so there's never
-// dead air after sending a message.
-const MessageListFallback = () => (
-  <div className="w-full max-w-xl bg-primary border border-border shadow-sm rounded-lg pointer-events-auto">
-    <div className="flex flex-col gap-3 p-4">
-      <div className="flex w-full justify-start">
-        <div className="px-4 py-3 bg-accent/30 border border-border rounded-lg flex items-center gap-1 h-11">
-          {[0, 1, 2].map((dot) => (
-            <span
-              key={dot}
-              className="w-1.5 h-1.5 bg-foreground/50 rounded-full animate-bounce"
-              style={{ animationDelay: `${dot * 150}ms` }}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-)
-
 const MessageListUI = dynamic(
   () => preloadMessageList().then((mod) => mod.MessageListUI),
-  { ssr: false, loading: MessageListFallback }
+  { ssr: false }
 )
 
 export default function HomeChatBar() {
