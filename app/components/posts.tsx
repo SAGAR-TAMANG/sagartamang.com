@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
+import { HoverPreviewLink } from './hover-link-preview'
+import { WritingPreviewCard } from './writing-preview-card'
 
 type BlogPostsProps = {
   limit?: number
@@ -25,10 +27,17 @@ export function BlogPosts({ limit }: BlogPostsProps) {
   return (
     <div className="flex flex-col gap-figma-inside-gap">
       {displayedBlogs.map((post) => (
-        <Link
+        <HoverPreviewLink
           key={post.slug}
           className="flex flex-col gap-figma-inside-gap group"
           href={`/blog/${post.slug}`}
+          preview={
+            <WritingPreviewCard
+              title={post.metadata.title}
+              date={formatDate(post.metadata.publishedAt, false)}
+              slug={post.slug}
+            />
+          }
         >
           <div className="w-full grid grid-cols-[8rem_1fr] md:grid-cols-[9rem_1fr] items-baseline gap-2">
             <p className="text-muted-foreground tabular-nums">
@@ -38,7 +47,7 @@ export function BlogPosts({ limit }: BlogPostsProps) {
               {post.metadata.title}
             </p>
           </div>
-        </Link>
+        </HoverPreviewLink>
       ))}
 
       {/* 3. Use the calculated boolean here */}

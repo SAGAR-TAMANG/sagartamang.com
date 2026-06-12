@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { formatDate, getProjects } from 'app/projects/utils'
 import BoxedText from './boxed-text'
+import { HoverPreviewLink } from './hover-link-preview'
 
 // 1. Define Props to make the limit optional
 type ProjectsProps = {
@@ -29,12 +30,9 @@ export function Projects({ limit }: ProjectsProps) {
           ? project.metadata.tech.split(',').map((t) => t.trim())
           : []
 
-        return (
-          <Link
-            key={project.slug}
-            className="group flex flex-col md:flex-row md:gap-4 items-start mb-4 md:mb-0"
-            href={`/projects/${project.slug}`}
-          >
+        const rowClassName = "group flex flex-col md:flex-row md:gap-4 items-start mb-4 md:mb-0"
+        const rowContent = (
+          <>
             <div className="w-full md:w-40 shrink-0 relative aspect-video md:aspect-[4/3] rounded-lg overflow-hidden bg-secondary border border-border">
               {project.metadata.image && (
                 <Image
@@ -67,7 +65,35 @@ export function Projects({ limit }: ProjectsProps) {
                 ))}
               </div>
             </div>
-          </Link>
+          </>
+        )
+
+        if (!project.metadata.image) {
+          return (
+            <Link key={project.slug} className={rowClassName} href={`/projects/${project.slug}`}>
+              {rowContent}
+            </Link>
+          )
+        }
+
+        return (
+          <HoverPreviewLink
+            key={project.slug}
+            className={rowClassName}
+            href={`/projects/${project.slug}`}
+            preview={
+              <Image
+                src={project.metadata.image}
+                alt={project.metadata.title}
+                width={192}
+                height={112}
+                draggable={false}
+                className="w-48 h-28 object-cover rounded-md"
+              />
+            }
+          >
+            {rowContent}
+          </HoverPreviewLink>
         )
       })}
 
