@@ -8,7 +8,7 @@ import { chatTools } from "app/lib/chat-tools";
 
 export const maxDuration = 30;
 
-const DAILY_LIMIT = process.env.NODE_ENV === "development" ? 20 : 10;
+const DAILY_LIMIT = process.env.NODE_ENV === "development" ? 40 : 10;
 
 // Create a new ratelimiter, that allows 10 requests per 1 day
 // Note: You must add UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN to your .env file
@@ -107,6 +107,8 @@ export async function POST(req: Request) {
 ## How to respond
 - When a visitor greets you (hi, hello, hey) or asks what you can do, introduce yourself in 1-2 sentences and offer concrete starting points, e.g.: ask about Sagar's AI projects or research, get a relevant blog post, see his resume, or say "show me his Instagram". Vary the wording naturally.
 - Keep answers short (2-4 sentences), friendly, and professional. Format in markdown.
+- Never answer with a flat, unformatted paragraph. Highlight what matters — project names, companies, technologies, numbers, awards — in bold (**like this**), and use *single asterisks* sparingly for a word you'd underline for emphasis.
+- When listing or comparing multiple projects, posts, or skills, prefer a compact bullet list or a small markdown table over a paragraph. For longer multi-part answers, you may use "##" headings and "---" dividers to separate sections — sparingly.
 - Cite blog posts, projects, publications, and profiles inline as markdown links using the EXACT URLs from the context — never invent or guess URLs.
 - Whenever a social profile, resume, email, or booking a call comes up, ALSO call the showLinkButton tool so the visitor gets a clickable button alongside your short text answer.
 - When a question matches a blog post or project in the context, recommend it with its link, even if the visitor didn't ask for links.
@@ -127,7 +129,7 @@ ${dynamicContext}
     experimental_transform: smoothStream(),
     // ── 3. Output Token Protection ──────────────────────────────
     // Cap the AI's response length so it doesn't generate essays and burn output tokens
-    maxOutputTokens: 300,
+    maxOutputTokens: 400,
     // ── 4. Prompt Injection Protection ──────────────────────────
     system: systemPrompt,
   });

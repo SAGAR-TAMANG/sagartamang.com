@@ -32,9 +32,33 @@ const markdownComponents: Components = {
   p: ({ node, ...props }) => <p {...props} className="my-1 first:mt-0 last:mb-0" />,
   ul: ({ node, ...props }) => <ul {...props} className="list-disc pl-5 my-1 space-y-0.5" />,
   ol: ({ node, ...props }) => <ol {...props} className="list-decimal pl-5 my-1 space-y-0.5" />,
-  strong: ({ node, ...props }) => <strong {...props} className="font-semibold" />,
+  // Landing-page emphasis style: **bold** → semibold italic (like "anything."
+  // in current.tsx), *italic* → underlined (like "fast" in header.tsx).
+  strong: ({ node, ...props }) => <strong {...props} className="font-semibold italic" />,
+  em: ({ node, ...props }) => <em {...props} className="not-italic underline underline-offset-4" />,
   inlineCode: ({ node, ...props }) => (
     <code {...props} className="bg-secondary px-1 py-0.5 rounded text-[0.85em]" />
+  ),
+  // Headings keep the bubble's font size — hierarchy via weight/italic only,
+  // matching the site's minimalist heading style (see header.tsx, current.tsx).
+  h1: ({ node, ...props }) => <h1 {...props} className="font-semibold italic my-1.5 first:mt-0" />,
+  h2: ({ node, ...props }) => <h2 {...props} className="font-semibold my-1.5 first:mt-0" />,
+  h3: ({ node, ...props }) => <h3 {...props} className="font-medium italic my-1.5 first:mt-0" />,
+  h4: ({ node, ...props }) => <h4 {...props} className="font-medium italic my-1.5 first:mt-0" />,
+  hr: ({ node, ...props }) => <hr {...props} className="my-2 border-border" />,
+  blockquote: ({ node, ...props }) => (
+    <blockquote {...props} className="border-l-2 border-border pl-2 my-1 italic text-muted-foreground" />
+  ),
+  table: ({ node, ...props }) => (
+    <div className="overflow-x-auto my-1.5">
+      <table {...props} className="w-full border-collapse text-[0.95em]" />
+    </div>
+  ),
+  th: ({ node, ...props }) => (
+    <th {...props} className="text-left font-semibold border-b border-border px-2 py-1" />
+  ),
+  td: ({ node, ...props }) => (
+    <td {...props} className="border-b border-border/50 px-2 py-1 align-top" />
   ),
 }
 
