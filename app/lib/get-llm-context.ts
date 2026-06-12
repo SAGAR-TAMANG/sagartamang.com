@@ -28,6 +28,7 @@ export async function getLLMContext(): Promise<string> {
 - Email: build@sagartamang.com
 - GitHub: https://github.com/SAGAR-TAMANG
 - LinkedIn: https://www.linkedin.com/in/sagar-tmg/
+- YouTube: https://www.youtube.com/@sagar_builds - 1300+ subscribers
 - X / Twitter: https://x.com/sagar_builds (@sagar_builds) - 1,300+ followers
 - Instagram: https://www.instagram.com/sagar_builds/ (@sagar_builds) - 109,000+ followers
 - Google Scholar: https://scholar.google.com/citations?hl=en&user=3mS0Y4wAAAAJ
