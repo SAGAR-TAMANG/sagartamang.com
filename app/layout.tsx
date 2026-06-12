@@ -76,6 +76,7 @@ export const metadata: Metadata = {
     siteName: 'sagar_builds — Sagar Tamang',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: `${baseUrl}/og-image.png`, width: 1200, height: 630, alt: 'Sagar Tamang — AI Engineer' }],
   },
 
   // Twitter Card (X)
@@ -85,6 +86,7 @@ export const metadata: Metadata = {
     description: 'AI Engineer at TwoSpoon.ai. I build fast. Follow @sagar_builds for builds, tutorials, and tech.',
     creator: '@sagar_builds',
     site: '@sagar_builds',
+    images: [`${baseUrl}/og-image.png`],
   },
 
   // Robots control (ensure you are indexed)
