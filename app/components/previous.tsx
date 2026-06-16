@@ -35,7 +35,7 @@ const Previous = () => {
           </p>
         </div>
 
-        <div className="flex items-center justify-start gap-2">
+        {/* <div className="flex items-center justify-start gap-2">
           <Image src={"/successscholar-favicon.svg"} alt="successscholar-favicon" height={10} width={10} />
           <p>
             <HoverLinkPreview
@@ -46,7 +46,7 @@ const Previous = () => {
             >successscholar.in</HoverLinkPreview>
             {' '} ~ product owner/developer [kolkata, india]
           </p>
-        </div>
+        </div> */}
       </div>
     </section>
   )
