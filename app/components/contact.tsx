@@ -18,7 +18,7 @@ const Contact = () => {
           </a>.
         </p>
         <p>
-          for enterprise ai solutions, reach out at {' '}
+          for enterprise ai solutions, reach us out at {' '}
           <span className="inline-flex align-middle gap-0.5 bg-white text-black rounded-sm px-0.5 py-0 hover:cursor-pointer hover:bg-white/90 active:bg-white/70 transition leading-4">
             <Image
               className="invert"
