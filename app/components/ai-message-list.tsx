@@ -23,7 +23,7 @@ const markdownComponents: Components = {
     <a
       {...props}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       className="underline underline-offset-4 decoration-muted-foreground hover:text-accent-foreground transition-colors"
     >
       {children}
@@ -70,7 +70,7 @@ const LinkButton = ({ target }: { target: keyof typeof PROFILE_LINKS }) => {
     <a
       href={link.url}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       className="inline-flex w-fit items-center gap-1.5 mt-2 me-1 px-3 py-1.5 text-xs font-medium bg-secondary text-secondary-foreground border border-border rounded-md hover:bg-accent/30 hover:text-foreground transition-colors"
     >
       {link.label}

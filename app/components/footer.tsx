@@ -74,7 +74,7 @@ export default function Footer() {
           <li key={link.name}>
             <a
               className="flex items-center transition-all text-muted-foreground hover:text-foreground"
-              rel="noopener noreferrer"
+              rel="noopener"
               target="_blank"
               href={link.url}
               aria-label={link.name}
@@ -85,7 +85,7 @@ export default function Footer() {
         ))}
       </ul>
       <p className="mt-8 text-muted-foreground text-sm">
-        © {new Date().getFullYear()} MIT Licensed | find <a className="underline decoration-foreground hover:decoration-muted-foreground underline-offset-4" rel="noopener noreferrer" aria-label={"source-code"} target="_blank" href="https://github.com/SAGAR-TAMANG/sagartamang.com" > code here</a> | built by <a className="underline decoration-foreground hover:decoration-muted-foreground underline-offset-4" rel="noopener noreferrer" aria-label={"sagar-tamang"} target="_blank" href="https://sagartamang.com"> sagar</a>
+        © {new Date().getFullYear()} MIT Licensed | find <a className="underline decoration-foreground hover:decoration-muted-foreground underline-offset-4" rel="noopener" aria-label={"source-code"} target="_blank" href="https://github.com/SAGAR-TAMANG/sagartamang.com" > code here</a> | built by <a className="underline decoration-foreground hover:decoration-muted-foreground underline-offset-4" rel="noopener" aria-label={"sagar-tamang"} target="_blank" href="https://sagartamang.com"> sagar</a>
       </p>
     </footer>
   )
