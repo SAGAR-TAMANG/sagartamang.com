@@ -1,0 +1,112 @@
+---
+title: 'Friday: The AI Assistant That Lives On Your Computer (Tony Stark F.R.I.D.A.Y.)'
+publishedAt: '2026-07-02'
+summary: 'I built Friday, a voice-first AI assistant inspired by Tony Stark F.R.I.D.A.Y. It talks to you, sees your screen, searches the web, and can actually control your computer. Here is how I built it, from a 1k-star open-source project into a full desktop app.'
+image: '/projects/mockup-friday.webp'
+---
+
+# Friday: The AI Assistant That Lives On Your Computer
+
+Everyone who watched Iron Man wanted the same thing: an AI assistant you can just *talk* to. Not a chatbot in a browser tab — a real, always-there voice that sees what you see and can actually do things on your machine. Tony Stark had J.A.R.V.I.S., and later **F.R.I.D.A.Y.**
+
+So I built one. It's called **Friday**, and it's a voice-first **AI assistant that lives on your computer** — for Windows and macOS.
+
+> 👉 **Download Friday for Windows:** [friday.feynmanpi.com](https://friday.feynmanpi.com) — *(macOS coming soon)*
+
+This is the story of how Friday went from an open-source weekend experiment with ~1k stars on GitHub into a polished desktop app — the architecture, the models, and why the shipped version runs entirely on OpenAI.
+
+---
+
+## 🤔 What Is Friday?
+
+**Friday is a Tony Stark–inspired AI desktop assistant.** Instead of typing into a box, you speak to it, and it speaks back. But the part that makes it feel like a real **F.R.I.D.A.Y. / J.A.R.V.I.S. alternative** is what it can *do*:
+
+- **🎙️ Voice** — a natural, interruptible voice conversation, always one shortcut away.
+- **👁️ Vision** — it can look at your screen and understand what you're working on.
+- **🌐 Web search** — it pulls live information from the web mid-conversation.
+- **🖱️ Computer control** — it can actually move your mouse, type, and operate apps for you.
+
+That last point is the difference between "a voice chatbot" and "an AI agent for your desktop." Friday is a **computer-use AI assistant** — it doesn't just answer, it acts.
+
+If you want the short version: [get Friday here](https://friday.feynmanpi.com).
+
+---
+
+## 🌱 Where It Started: The Open-Source F.R.I.D.A.Y.
+
+Friday began as an open-source project — a **Tony Stark F.R.I.D.A.Y. clone** I put on GitHub to see if I could make a genuinely low-latency voice agent. It resonated way more than I expected, crossing **1k+ stars**.
+
+- ⭐ **Open-source repo:** [github.com/SAGAR-TAMANG/friday-tony-stark-demo](https://github.com/SAGAR-TAMANG/friday-tony-stark-demo)
+- 🧩 **Project write-up:** [F.R.I.D.A.Y. — the build breakdown](/projects/friday-jarvis-clone)
+
+The open-source version was built for **flexibility**. Rather than locking you into one provider, it let you mix and match the best model for each stage of the voice pipeline:
+
+- **Speech-to-text (STT):** Sarvam Saaras v3, Deepgram, or OpenAI
+- **LLM / reasoning:** Google Gemini 2.5 Flash for fast time-to-first-token
+- **Text-to-speech (TTS):** OpenAI Nova, ElevenLabs, and others
+
+Architecturally, it split into two cooperating layers: a **LiveKit**-powered real-time voice pipeline that listens and speaks, and a **FastMCP** "brain" server that did the actual tool execution (news, web search, system info) over Server-Sent Events. Decoupling the voice loop from the tools meant you could add new capabilities without ever breaking the conversation.
+
+That design is still the best starting point if you want to **build your own AI voice assistant** — the code is all there, MIT-licensed.
+
+---
+
+## 🚀 The Upgrade: A Real Desktop App
+
+The open-source version proved the idea. But "clone a GitHub repo, set five API keys, and run a Python server" is not something most people will do. To make Friday something anyone could actually *use*, it needed to be a real, installable **desktop AI assistant**.
+
+So I rebuilt it as a native desktop app — and made one big architectural decision: **the shipped version runs entirely on OpenAI.**
+
+Instead of stitching together Sarvam + Gemini + ElevenLabs, the released Friday uses **OpenAI's Realtime API** (`@openai/agents/realtime`) end to end. One provider, one key, dramatically simpler setup, and a tighter, lower-latency voice loop. The multi-provider flexibility still lives on in the open-source edition for tinkerers — but the product you download is the streamlined, OpenAI-native version.
+
+> The released app is the **upgraded** version of the open-source project: better UI, tighter latency, and a genuinely polished experience. Same soul, production-grade build.
+
+**[Download the desktop app →](https://friday.feynmanpi.com)**
+
+---
+
+## 🔒 The Best Part: It's Yours, and It's Private
+
+Here's what makes Friday different from most **AI assistant apps**: it's **bring-your-own-key (BYOK)** and **privacy-first by design**.
+
+When you use Friday, your voice, your screen captures, your searches, and your computer-control actions go **straight from your device to OpenAI, using your own API key.** Nothing routes through my servers. I don't see your conversations, I don't store your screen, and I don't proxy your data.
+
+You get a J.A.R.V.I.S.-style assistant that answers only to you — not a subscription that funnels your private desktop through someone else's cloud.
+
+---
+
+## 🛠️ How Friday Is Built (For the Developers)
+
+If you care about the stack, here's the shipped architecture:
+
+- **Shell:** Electron desktop app — a transparent, always-on-top "Dynamic Island"–style overlay that expands when you talk to it.
+- **Voice:** OpenAI Realtime (`@openai/agents/realtime`) hosted inside the app for the full speech-to-speech loop.
+- **Vision:** a screen-capture tool that lets the agent *look at your screen* and reason about it.
+- **Web search:** OpenAI's hosted web search tool for live information.
+- **Computer control:** desktop input automation so the agent can move the mouse, type, and drive apps.
+- **Security:** the real OpenAI key is encrypted at rest on-device; the app mints short-lived ephemeral keys so the actual secret never leaves your machine.
+
+It's a genuinely good reference for anyone building an **AI agent that controls your computer**, an **OpenAI Realtime voice app**, or an **Electron AI assistant**.
+
+---
+
+## 📥 How To Get Friday
+
+1. Go to **[friday.feynmanpi.com](https://friday.feynmanpi.com)**
+2. Download the **Windows** build *(macOS is coming soon)*
+3. Add your OpenAI API key and start talking
+
+That's it. You'll have a **voice AI assistant for your PC** — your own personal F.R.I.D.A.Y. — running in a couple of minutes.
+
+---
+
+## 🔗 Links & Resources
+
+- 🖥️ **Download Friday (Windows):** [friday.feynmanpi.com](https://friday.feynmanpi.com)
+- ⭐ **Open-source repo:** [github.com/SAGAR-TAMANG/friday-tony-stark-demo](https://github.com/SAGAR-TAMANG/friday-tony-stark-demo)
+- 🧩 **Project breakdown:** [F.R.I.D.A.Y. on sagartamang.com](/projects/friday-jarvis-clone)
+- 🎬 **Instagram demo:** [@sagar_builds](https://www.instagram.com/sagar_builds/)
+
+If you build something with Friday — or your own **Tony Stark AI assistant** — I'd love to see it.
+
+**Built by [Sagar Tamang](https://github.com/SAGAR-TAMANG)**
