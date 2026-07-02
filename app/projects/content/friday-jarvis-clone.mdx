@@ -1,36 +1,45 @@
 ---
-title: 'F.R.I.D.A.Y.'
-publishedAt: '2026-04-10'
-summary: 'A Tony Stark-inspired, real-time AI voice assistant driven by LiveKit and FastMCP.'
-image: '/projects/mockup-friday.webp'
-tech: 'FastMCP, LiveKit, Gemini 2.5 Flash, Python'
+title: "F.R.I.D.A.Y."
+publishedAt: "2026-04-10"
+summary: "A Tony Stark-inspired, real-time AI voice assistant driven by LiveKit and FastMCP."
+image: "/projects/mockup-friday.webp"
+tech: "FastMCP, LiveKit, Gemini 2.5 Flash, Python"
 ---
 
 > **"Fully Responsive Intelligent Digital Assistant for You"**
 
 > **Almost 1,000 stars on [GitHub](https://github.com/SAGAR-TAMANG/friday-tony-stark-demo)!**
 
+**🎉 Official Public Release:** F.R.I.D.A.Y. is now available as a standalone desktop application! You can download the `.exe` for Windows or `.dmg` for macOS directly at [friday.feynmanpi.com](http://friday.feynmanpi.com/).
+
 I developed and open-sourced **F.R.I.D.A.Y.** to bridge the gap between conversational AI and functional backend execution. Since its release, the repository has resonated strongly with the developer community, crossing 650 stars on GitHub.
 
 ## The Problem
+
 Building a voice assistant that is both highly responsive and deeply integrated with system tools is challenging. Traditional agents often bundle the voice pipeline and the tool-execution logic together, resulting in monolithic codebases that are hard to scale, suffer from high latency, or break conversational flow when executing complex external tasks.
 
 ## The Solution
+
 F.R.I.D.A.Y. splits the architecture into two cooperating layers: a lightning-fast voice pipeline that listens and speaks, and a robust backend server that acts as the "brain," doing the actual heavy lifting.
 
 ### Key Features
+
 - **🎙️ Real-Time Voice Pipeline:** Powered by LiveKit Agents, providing seamless, interruptible voice interactions.
 - **🧠 Decoupled Brain (MCP Server):** A FastMCP server exposing tools (news, web search, system info) over Server-Sent Events (SSE).
 - **⚡ Multi-Model Intelligence:** Intelligently routes tasks combining Sarvam Saaras v3 for optimized STT, Gemini 2.5 Flash for rapid reasoning, and OpenAI's Nova voice for high-fidelity TTS.
 - **🛠️ Extensible Architecture:** New capabilities can be added to the MCP backend without ever touching the core voice agent loop.
 
 ## Tech Stack
+
 The architecture relies on modern, high-performance tooling:
+
 - **Frameworks:** FastMCP, LiveKit Agents
 - **AI / Models:** Google Gemini 2.5 Flash (LLM), Sarvam Saaras v3 (STT), OpenAI (TTS)
 - **Language & Package Management:** Python 3.11+, `uv`
 
 ## Links
+
+- [Download App](http://friday.feynmanpi.com/)
 - [Watch Instagram Demo](https://www.instagram.com/p/DW2HjYtkwg_/)
 - [YouTube Video Guide](https://www.youtube.com/watch?v=mMY9swqe3BI)
 - [Source Code](https://github.com/SAGAR-TAMANG/friday-tony-stark-demo)
