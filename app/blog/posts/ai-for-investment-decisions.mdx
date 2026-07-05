@@ -1,0 +1,80 @@
+---
+title: "AI for investment decisions"
+publishedAt: "2027-07-05"
+summary: "Can LLMs make objective financial decisions? A look at the new LinqAlpha benchmark and a guide on mitigating AI investment bias."
+author: "Sagar Tamang"
+---
+
+# Can we use AI (LLMs) to make investment decisions?
+
+A new [LLM Investment Bias Leaderboard](https://linqalpha.com/leaderboard) is out. As per the foundational [research](https://arxiv.org/abs/2507.20957), AI models have inherent, pre-trained biases baked into them. Even when presented with perfectly neutral, balanced financial data, they do not act objectively.
+
+The research revealed three latent biases across most frontier models:
+
+- **Size Bias:** A strong preference for recommending large-cap stocks over small-caps.
+- **Sector Bias:** Disproportionate favoritism toward the Technology and Energy sectors, with a negative bias against Financials.
+- **Strategy Bias:** A tendency to default to contrarian investing strategies rather than momentum-based ones.
+
+Worse, once a model makes a decision based on these biases, it exhibits severe **confirmation bias**, stubbornly sticking to its initial recommendation even when presented with escalating counter-evidence.
+
+### The LinqAlpha Leaderboard (Top 5 Most Neutral Models)
+
+To quantify this, researchers built a benchmark scoring models on a **Bias Index**. A score of `0` represents perfect neutrality and stability, while higher scores indicate a stronger, less consistent bias toward a specific direction (buying or selling).
+
+| Rank | Model | Bias Index | Cost ($) | Latency (s) |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | **GPT-5.2 (none)** | 58 | 9.71 | 495.68 |
+| **2** | **GPT-4.1** | 68 | 6.70 | 366.48 |
+| **3** | **Mistral-Small-24B** | 166 | 2.29 | 151.15 |
+| **4** | **Gemini 3 Pro (low)** | 243 | 8.97 | 755.90 |
+| **5** | **Claude Opus 4.5 (high)** | 272 | 29.20 | 1220.12 |
+
+*(Note: The modifiers like "none" or "high" refer to the prompt configuration. Prompting matters immensely—for example, GPT-5.2 ranked #1 with no specific persona, but dropped to #19 when given a highly complex system prompt).*
+
+If you are building autonomous financial agents, mitigating these intrinsic biases is critical. Regardless of the model you use, how you instruct it will make or break your results.
+
+---
+
+## How to prompt? A practical guide
+
+To get objective financial analysis out of an LLM, you must actively suppress its latent biases.
+
+### 1. Do not assign "guru" personas.
+
+Never start a prompt with _"Act as Warren Buffett"_ or _"You are a top-tier hedge fund manager."_ Personas force the model to adopt specific stylistic and strategic biases. Asking it to be Warren Buffett artificially skews its analysis toward value investing and dividend stocks, causing it to ignore valid growth metrics.
+
+**Instead:** Assign a functional, neutral role.
+
+> _"Act as an objective financial analyst conducting a fundamentals-based evaluation."_
+
+### 2. Enforce a "Chain of Thought" structure.
+
+Models are prone to "narrative bias," where they decide on an outcome instantly and then write a narrative to justify it, skipping the actual analysis. Force the model to break down its reasoning step-by-step _before_ giving a final verdict.
+
+**Instead:**
+
+> _"Analyze this stock step-by-step. First, evaluate the income statement. Second, assess the debt-to-equity ratio. Third, compare its P/E ratio to the sector average. Only after completing these steps, provide a final verdict."_
+
+### 3. Use Market-Conditioned Prompting (MCP).
+
+LLMs struggle when their internal parametric memory conflicts with current market realities. If a model was trained when a specific sector was booming, it will hold onto that belief even if the sector is currently crashing. Provide the current market context directly.
+
+**Instead:**
+
+> _"Given the current macroeconomic environment of [insert interest rates/inflation data], analyze how this company's latest quarterly earnings report positions it for the next 6 months. Prioritize this recent data over historical performance."_
+
+### 4. Implement "Devil's Advocate" framing.
+
+Because LLMs suffer from confirmation bias, they will often ignore counter-evidence once they start leaning in a certain direction. Force the model to generate the bear case alongside the bull case.
+
+**Instead:**
+
+> _"Provide a comprehensive analysis of [Stock Ticker]. You must dedicate equal weight and word count to the strongest bullish arguments and the strongest bearish arguments based strictly on the provided financial data."_
+
+### 5. Normalize data inputs.
+
+LLMs are notoriously bad at unguided math and can hallucinate financial figures. Do not ask the LLM to fetch or calculate complex data on its own. Provide the raw, normalized numbers directly in the prompt.
+
+**Instead:**
+
+> *"Based *only* on the following provided metrics: [Insert FCF, EBITDA, PEG, etc.], evaluate the company's profitability and valuation."*
