@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
+import remarkGfm from 'remark-gfm'
 import React from 'react'
 
 function Table({ data }) {
@@ -104,6 +105,7 @@ export function CustomMDX(props) {
     <MDXRemote
       {...props}
       components={{ ...components, ...(props.components || {}) }}
+      options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
     />
   )
 }
