@@ -1,0 +1,48 @@
+---
+title: "U.L.T.R.O.N."
+publishedAt: "2026-07-15"
+summary: "An Iron Man-inspired AI with a holographic orb for a face, hand-gesture control, a real-time voice, and hands in the physical world — it operates Android devices on command."
+image: "/projects/mockup-ultron.webp"
+tech: "Next.js, Three.js, MediaPipe, OpenAI Realtime, MCP, Python"
+---
+
+> **"A voice with hands."**
+
+**ULTRON** is my Iron Man-inspired AI: a holographic orb you can spin and zoom with bare-hand gestures through your webcam, a real-time voice agent you talk to like a person — and, unlike most voice assistants, it acts in the physical world. Ask it to unlock a phone, open YouTube, or run a search, and the screens in front of you light up and do it.
+
+The demo reel blew up on release — **20,000+ likes within the first 5 hours** of publishing.
+
+## The Idea
+
+Voice assistants are everywhere, but they all live behind glass: they talk, they fetch information, and that's where it ends. I wanted the Tony Stark experience — an AI with a *presence* (a holographic orb that reacts to its own voice), a *personality*, and *hands*: the ability to reach out and operate real devices while you watch.
+
+## How It Works
+
+ULTRON is three layers working together:
+
+- **🔮 The Orb (open source):** A holographic wireframe orb built with Three.js — layered shells, a glowing core, orbiting debris, drifting code fragments, and a cinematic bloom/chromatic-aberration pass. You can spin and zoom it by pinching mid-air, tracked through the webcam with MediaPipe hand landmarks.
+- **🎙️ The Voice (proprietary):** A real-time speech-to-speech agent with a low-latency WebRTC pipeline and a custom in-character audio treatment. The orb is wired to the live output audio, so it visibly listens, thinks, and "mouths" every word as it speaks.
+- **🤖 The Hands (proprietary):** A device-control layer that gives the agent command over a rack of Android devices. Fast scripted actions land within a conversational beat; anything else is handed to an autonomous agent that reads the screen, taps, types, and verifies its own work — step by step until the goal is done.
+
+## Open Source & What's Next
+
+The orb UI — the full Three.js scene and the MediaPipe hand-gesture control — is open source:
+
+- **[ultron-by-sagar-builds](https://github.com/SAGAR-TAMANG/ultron-by-sagar-builds)** — run it locally with `npm install && npm run dev` and control the orb with your bare hands.
+
+The voice agent and the device-control layer are **proprietary for now — a public release is coming soon**. Meanwhile, if you want a fully open-source voice agent you can run today, check out **[F.R.I.D.A.Y.](https://sagartamang.com/projects/friday-jarvis-clone)** — my Tony Stark-inspired (female-voiced) assistant with almost 1,000 stars on GitHub:
+
+- [F.R.I.D.A.Y. project write-up](https://sagartamang.com/projects/friday-jarvis-clone)
+- [Download the desktop app](https://friday.feynmanpi.com/)
+- [Source code](https://github.com/SAGAR-TAMANG/friday-tony-stark-demo)
+
+## Tech Stack
+
+- **Interface:** Next.js, Three.js (WebGL, post-processing), MediaPipe Tasks Vision (hand tracking)
+- **Voice:** OpenAI Realtime over WebRTC, custom Web Audio processing (see friday for inspiration)
+- **Device control:** MCP (Model Context Protocol), Python, and other tech (releasing soon - follow for updates)
+
+## Links
+
+- [Watch the demo reel](https://www.instagram.com/p/DayJ17OTwvx/)
+- [Orb UI source code](https://github.com/SAGAR-TAMANG/ultron-by-sagar-builds)
